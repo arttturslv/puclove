@@ -1,5 +1,16 @@
 # React + Vite
 
+Caso dê o seguinte erro:
+
+> puclove@0.0.0 dev
+> vite
+'vite' não é reconhecido como um comando interno
+ou externo, um programa operável ou um arquivo em lotes.
+
+utilize npm install e por fim use npm run dev
+
+(caso não de, use npx vite)
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
