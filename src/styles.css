@@ -22,6 +22,12 @@ body {
   justify-content: center;
   align-items: center;
   padding: 10px;
+  font-family: "Inter", sans-serif;
+  background-image: url("./assets/Background-svg.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: hidden; /*tira o scroll*/
 }
 
 .wrap-login {
@@ -59,6 +65,7 @@ body {
 }
 
 .wrap-input h4 {
+  color: #fff;
   padding: 10px;
   font-size: 15px;
   text-align: left;
@@ -90,6 +97,7 @@ body {
 
 .container-login-form-btn {
   padding: 10px;
+  justify-content: center;
 }
 
 .login-form-btn {
@@ -127,4 +135,8 @@ body {
 
 .txt1:hover {
   color: #e2c09b;
+}
+.container-login-form-btn {
+  align-items: center;
+  display: flex;
 }
