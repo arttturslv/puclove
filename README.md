@@ -7,9 +7,7 @@ Caso dê o seguinte erro:
 'vite' não é reconhecido como um comando interno
 ou externo, um programa operável ou um arquivo em lotes.
 
-utilize npm install e por fim use npm run dev
-
-(caso não de, use npx vite)
+utilize "npm install" e por fim use npm run dev
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
