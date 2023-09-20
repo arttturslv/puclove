@@ -103,6 +103,11 @@ body {
   height: 45px;
   margin-top: 10px;
   text-align: center;
+  border-color: #e2c09b;
+}
+
+.login-form-btn:hover {
+  border-color: #e2c09b;
 }
 
 .text-center {
