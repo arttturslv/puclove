@@ -15,14 +15,15 @@ const Login = () => (
             Venha encontrar o seu parceiro!
           </span>
 
+          <h6>Digite seu email</h6>  
           <div className="wrap-input">
-            <input className="input" type="email" />
-            <span className="focus-input" data-placeholder="Email"></span>
+            <input className="input" type="email" placeholder=" meuemail@sga.pucminas.br" />
           </div>
 
+          <h6>Digite sua senha</h6>  
           <div className="wrap-input">
-            <input className="input" type="password" />
-            <span className="focus-input" data-placeholder="Password"></span>
+            <input className="input" type="password" placeholder=" Digite sua senha" />
+            <span className="forgot-password">Esqueci minha senha</span>
           </div>
 
           <div className="container-login-form-btn">
