@@ -3,7 +3,6 @@ import logo from "../assets/logo redonda-svg.svg";
 import "../styles.css";
 
 const Login = () => (
-  <div className="container-l">
     <div className="container-login">
       <div className="wrap-login">
         <form className="login-form">
@@ -41,7 +40,6 @@ const Login = () => (
         </form>
       </div>
     </div>
-  </div>
-);
+    );
 
 export default Login;
