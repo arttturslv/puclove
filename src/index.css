@@ -1,0 +1,29 @@
+/* Arquivos obrigatórios para o tailwind*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Custom scrollbar para firefox*/
+@supports (scrollbar-color: red blue) {
+    * {
+        scrollbar-color: #AD5E5E #E2C09B ;
+        scrollbar-width: thin;
+    }
+}
+
+/* Custom scrollbar para outros navegadores*/
+::-webkit-scrollbar {
+    width: 20px;
+}
+::-webkit-scrollbar-track {
+    background-color: #E2C09B;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #AD5E5E;
+    border-radius: 100vw;
+    border: 7px solid #E2C09B
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #945050;
+}

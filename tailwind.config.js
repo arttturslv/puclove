@@ -5,6 +5,18 @@ export default {
   "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {},
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      'black': '#09090b',
+      'white': '#fafafa',
+      'gray': '#52525b',
+      'green': '#166534',
+      'purple': '#6b21a8',
+      'yellow': '#eab308',
+      'pink': '#f472b6',
+      'cinzaBlack': '#333333',
+    },
   },
   plugins: [],
 }

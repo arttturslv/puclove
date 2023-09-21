@@ -3,7 +3,7 @@ import logo from "../assets/logo redonda-svg.svg";
 import "../styles.css";
 
 const Login = () => (
-  <div className="container">
+  <div className="container-l">
     <div className="container-login">
       <div className="wrap-login">
         <form className="login-form">
