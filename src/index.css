@@ -16,6 +16,9 @@
         scrollbar-width: thin;
     }
 }
+.container-login-form-btn {   
+    padding: 10px;   justify-content: center; 
+}
 
 /* Custom scrollbar para outros navegadores*/
 ::-webkit-scrollbar {
