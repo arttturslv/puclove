@@ -1,14 +1,15 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
 
 const Home = () => (
     <div className="container-home bg-cover w-full h-full bg-[url('../src\assets\background-linhas.svg')]">
-
-        <div className="logo-nome py-72 h-full grid grid-cols-1 content-center">
+        <Navbar/>
+        <div className="max-w-7xl logo-nome py-72 h-full grid grid-cols-1 content-center">
             <img className='w-4/5 md:w-3/5 lg:w-3/6' src="../src/assets/Logo frase-svg.svg" alt="PUCLOVE - Conectando corações, impulsionando comunidades" />
   
         </div>
 
-        <div className="texto space-y-2.5 w-4/5">
+        <div className="max-w-7xl texto space-y-2.5 w-4/5">
             <h3 className='sm:text-2xl	 md:text-3xl	 lg:text-4xl font-semibold	'>Sobre</h3>
             <p className='sm:text-base md:text-base lg:text-lg ' >Bem-vindo ao PucLove, o seu novo destino para conexões significativas entre estudantes da PUC (Pontifícia Universidade Católica)! Aqui, criamos um espaço virtual onde os alunos podem se encontrar, compartilhar interesses, e estabelecer relacionamentos que vão além das salas de aula. O PucLove é mais do que apenas um site de relacionamento; é uma comunidade que promove a amizade, o networking e, claro, o amor entre os estudantes da PUC.</p>
             <p className='sm:text-base md:text-base lg:text-lg '>O PucLove é um projeto apaixonante criado por um time dedicado de desenvolvedores que acredita que as conexões entre estudantes podem ser transformadoras. Com a visão de proporcionar uma experiência interativa excepcional, utilizamos as tecnologias de ponta do React e Java SpringBoot para criar uma plataforma intuitiva e dinâmica.</p>
@@ -16,7 +17,7 @@ const Home = () => (
             <p className='sm:text-base md:text-base lg:text-lg '>Junte-se a nós hoje mesmo e faça parte da comunidade PucLove. Conecte-se, compartilhe e, quem sabe, encontre o amor entre as salas de aula e os corredores da PUC!</p>
         </div>
 
-        <div className="caricaturas py-10 flex justify-between w-5/6 flex-wrap">
+        <div className="max-w-7xl caricaturas py-10 flex justify-between w-5/6 flex-wrap">
             <div className="alex flex-col text-center">
                 <img src="../src/assets/Caricaturas/alexy.svg" alt="Alex, um estudante" />
                 <h5 className='font-semibold text-lg'>Alex Gonçalves</h5>

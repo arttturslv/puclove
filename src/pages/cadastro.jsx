@@ -32,7 +32,7 @@ const Cadastro = () => (
           </div>
           <div className="wrap-input">
             <h4>Quando você nasceu</h4>
-            <input className="input" type="date" placeholder="01/01/1900" />
+            <input className="input datepickerbg" type="date" placeholder="01/01/1900" />
           </div>
           <div className="container-cadastro-form-btn">
             <button className="cadastro-form-btn" >Continuar</button>
