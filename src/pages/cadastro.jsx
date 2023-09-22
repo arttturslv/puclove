@@ -1,8 +1,12 @@
 import React from 'react';
 import "../StyleCadastro.css";
+import { useNavigate } from "react-router-dom";
 
+const Cadastro = () => {
+    
+  const navigate = useNavigate();
 
-const Cadastro = () => (
+    return (
     <div className="container-cadastro">
     <div className="container-cadastro">
       <div className="wrap-cadastro">
@@ -35,13 +39,14 @@ const Cadastro = () => (
             <input className="input datepickerbg" type="date" placeholder="01/01/1900" />
           </div>
           <div className="container-cadastro-form-btn">
-            <button className="cadastro-form-btn" >Continuar</button>
+            <button onClick={() => navigate("/cadastro/perfil")} className="cadastro-form-btn" >Continuar</button>
           </div>
           
         </form>
       </div>
     </div>
   </div>
-);
+
+)};
 
 export default Cadastro;

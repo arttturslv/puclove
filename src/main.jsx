@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/home'
 import Login from './pages/login'
 import Cadastro from './pages/cadastro'
+import CadastroPerfil from './pages/cadastroPerfil'
 
 //CRIANDO ARRAY DE ROTAS
 const router = createBrowserRouter([
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/cadastro",
     element: <Cadastro/>
+  },
+  {
+    path: "/cadastro/perfil",
+    element: <CadastroPerfil/>
   }
 ])
 
