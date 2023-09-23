@@ -22,95 +22,73 @@
   color-scheme: dark;
 }
 
-.container{
-  font-family: "Inter", sans-serif;
-  background-image: url("./assets/Background-svg.svg");  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  overflow: hidden; /*tira o scroll*/
-}
-
 .container-cadastro {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
- 
-  font-family: "Inter", sans-serif;
-  background-image: url("./assets/Background-svg.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  overflow: hidden; /*tira o scroll*/
+    
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Inter", sans-serif;
+    background-image: url("./assets/Background-svg.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden;
+    padding-left: 8px;
+    padding-right: 8px;
+      
 }
 
 .wrap-cadastro {
-  width: 400px;
-  height: auto;
-  background-color: #333333;
-  border-radius: 10px;
-  margin-left: 8px;
-  margin-right: 8px; 
-  overflow: hidden;
-  padding: 20px 20px;
-  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 400px;
+    height: auto;
+    background-color: #333333;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 20px 20px;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .cadastro-form-title {
-  font-size: 20px;
-  font-weight: 700;
-  color: white;
-  text-align: center;
-  margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-.cadastro-form-title img {
-  width: 50px;
-  padding-bottom: 10px;
-  display: flex;
-  margin: 2px;
-}
 
 .wrap-input {
-  padding: 7px;
+  padding: 5px;
   padding-left: 5px;
   padding-right: 5px;
 }
 
 .wrap-input h4 {
-  color: #fff;
-  padding: 10px;
-  font-size: 15px;
-  text-align: left;
-  padding: 3px;
-  font-weight: bold;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+   
 }
 
 .input {
-  font-size: 14px;
-  color: #fff;
-  line-height: 1.2;
-  border: none;
-  width: 100%;
-  height: 45px;
-  background-color: transparent;
-  padding: 0 15px;
-  border-radius: 10px;
-  background: #434343;
-}
+    font-size: 14px;
+    color: #fff;
+    line-height: 1.2;
+    border: none;
+    width: 100%;
+    height: 45px;
+    background-color: transparent;
+    padding: 7px 15px;
+    border-radius: 10px;
+    background: #434343;
+  }
 
-.forgot-password {
-  font-size: 12px;
-  font-weight: 300;
-  color: #fff;
-  text-align: right;
-  padding-left: 20px;
-  padding-right: 4px;
-}
+
 
 .container-cadastro-form-btn {
   padding: 2px;
@@ -118,19 +96,14 @@
 }
 
 .cadastro-form-btn {
-  font-size: 18px;
+  font-size: large;
   font-weight: 800;
-  border-radius: 10px;
   color: #fff;
-  width: 180px;
-  height: 45px;
-  margin-top: 10px;
+  width: auto;
+  height: auto;
+  margin-top: 5px;
   text-align: center;
-  border-color: #e2c09b;
-}
-
-.cadastro-form-btn:hover {
-  border-color: #e2c09b;
+  padding: 18px;
 }
 
 .text-center {
@@ -152,6 +125,6 @@
   color: #e2c09b;
 }
 .container-cadastro-form-btn {
-  align-items: center;
   display: flex;
+  text-align: center;
 }
