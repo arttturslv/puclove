@@ -22,14 +22,14 @@ const alex = () => {
 const Home = () => {
 
     return (
-    <div  className="container-home bg-cover w-full h-full bg-[url('../src\assets\background-linhas.svg')]">
+    <div className="container-home bg-cover w-full h-full bg-[url('../src\assets\background-linhas.svg')]">
         <Navbar/>
         <div className="max-w-7xl logo-nome py-72 h-full grid grid-cols-1 content-center">
             <img className='w-4/5 md:w-3/5 lg:w-3/6' src="../src/assets/Logo frase-svg.svg" alt="PUCLOVE - Conectando corações, impulsionando comunidades" />
   
         </div>
         
-        <div className="max-w-7xl texto space-y-2.5 w-4/5">
+        <div id="sobre" className="max-w-7xl texto space-y-2.5 w-4/5">
             <h3 className='sm:text-2xl	 md:text-3xl	 lg:text-4xl font-semibold	'>Sobre</h3>
             <p className='sm:text-base md:text-base lg:text-lg ' >Bem-vindo ao PucLove, o seu novo destino para conexões significativas entre estudantes da PUC (Pontifícia Universidade Católica)! Aqui, criamos um espaço virtual onde os alunos podem se encontrar, compartilhar interesses, e estabelecer relacionamentos que vão além das salas de aula. O PucLove é mais do que apenas um site de relacionamento; é uma comunidade que promove a amizade, o networking e, claro, o amor entre os estudantes da PUC.</p>
             <p className='sm:text-base md:text-base lg:text-lg '>O PucLove é um projeto apaixonante criado por um time dedicado de desenvolvedores que acredita que as conexões entre estudantes podem ser transformadoras. Com a visão de proporcionar uma experiência interativa excepcional, utilizamos as tecnologias de ponta do React e Java SpringBoot para criar uma plataforma intuitiva e dinâmica.</p>
@@ -67,7 +67,7 @@ const Home = () => {
             </div>
         </div>
 
-        <div className="footer w-full py-5 px-10  bg-cinzaBlack flex justify-center items-center" >
+        <div id="regras" className="footer w-full py-5 px-10  bg-cinzaBlack flex justify-center items-center" >
             <ul className=' list-disc'>
                 <li className='text-white font-light text-sm'>O site é apenas para estudantes da PUC, não é possível cadastrar um e-mail diferente do educacional (@sga.pucminas.br)</li>
                 <li className='text-white font-light text-sm'>Não toleramos na plataforma racismo, bullying, assédios, intolerância religiosa, violência ou qualquer tipo de ato criminoso.</li>

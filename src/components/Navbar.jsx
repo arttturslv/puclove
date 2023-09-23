@@ -2,7 +2,11 @@ import React from 'react'
 import menuOpen from '../assets/Icones/icon menuClose.svg'
 import menuClose from '../assets/Icones/icon menuOpen.svg'
 import { useState } from 'react'
-import { Link, ScrollLink } from 'react-scroll'
+import { Link as LinkExternal } from 'react-router-dom'
+import { Link } from 'react-scroll'
+import { useNavigate } from "react-router-dom";
+
+
 const Navbar = () => {
 
     let [isOpen, setisOpen] = useState(false)
@@ -13,6 +17,8 @@ const Navbar = () => {
         { name: "Privacidade", link: "privacidade" },
 
     ]
+
+    const navigate = useNavigate();
 
     return (
         <div className='w-full bg-vermelhoSanguino md:bg-transparent z-20'>
@@ -47,10 +53,10 @@ const Navbar = () => {
                         </Link>
                     </li>
                     <li className='pb-2 md:pb-0'>
-                        <Link to={"politica"} activeClass='active' smooth={true}
-                            spy={true} className='  hover:text-white cursor-pointer md:px-5 font-semibold transition-all duration-500  hover:text-primary  '
+                        <LinkExternal to={"/politica-privacidade"} 
+                             className='  hover:text-white cursor-pointer md:px-5 font-semibold transition-all duration-500  hover:text-primary  '
                         >Politica
-                        </Link>
+                        </LinkExternal>
                     </li>
                     
                     <li className='md:grow'>
@@ -58,8 +64,8 @@ const Navbar = () => {
 
 
                     <div className=' text-amareloOcre md:text-black ml-0'>
-                        <button className='btn font-semibold  hover:md:text-amareloOcre hover:text-black bg-amareloOcre text-vermelhoSanguino md:text-black md:bg-white rounded-full px-3 py-1 md:static '>Login</button>
-                        <button className='btn font-semibold  hover:text-white rounded-full px-3  md:static '>Cadastrar</button>
+                        <button onClick={() => navigate("/login")} className='btn font-semibold  hover:md:text-amareloOcre hover:text-black bg-amareloOcre text-vermelhoSanguino md:text-black md:bg-white rounded-full px-3 py-1 md:static '>Login</button>
+                        <button onClick={() => navigate("/cadastro")} className='btn font-semibold  hover:text-white rounded-full px-3  md:static '>Cadastrar</button>
                     </div>
 
                 </ul>
