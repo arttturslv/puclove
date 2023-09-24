@@ -1,13 +1,22 @@
 import React from 'react';
 import "../StyleCadastro.css";
 import { useNavigate } from "react-router-dom";
+import {useState} from "react";
+import Interesses from '../components/Interesses';
 
 const cadastroPerfil = () => { 
   const navigate = useNavigate();
 
+  const [openModal, setOpenModal] = useState(false);
+
+  const [placeholder, setPlaceholder] = useState('Clique aqui para escolher');
+  
   return (
   
     <div className="container-cadastro">
+      
+      {openModal && <Interesses closeModal={() => setOpenModal(!openModal)} setPlaceholder={setPlaceholder}  />}
+
     <div className="container-cadastro">
       <div className="wrap-cadastro">
         <form className="cadastro-form">
@@ -23,21 +32,21 @@ const cadastroPerfil = () => {
 
           <div className="wrap-input">
             <h4>Qual seu campos</h4>
-            <select className="input" id="cursos">
-              <option value=""></option>
-              <option value="0">São Gabriel</option>
-              <option value="1">Praça da Liberdade</option>
-              <option value="2">Coração Eucarístico</option>
+            <select className="input" id="cursos" >
+              <option value="" disabled selected>Clique aqui para escolher</option>
+              <option value="1">São Gabriel</option>
+              <option value="2">Praça da Liberdade</option>
+              <option value="3">Coração Eucarístico</option>
             </select>
           </div>
-          
-          <div className="wrap-input">
+
+          <div  className="wrap-input">
             <h4>Quais seus interesses</h4>
-            <input className="input" type="text" placeholder="Gatos, Jogos, Beber" />
+            <input className="input  placeholder-white hover:placeholder-cinzaBlack" type="text" placeholder={placeholder} onClick={()=> setOpenModal(true)} />
           </div>
           <div className="wrap-input">
             <h4>Qual seu instagram</h4>
-            <input className="input" type="" placeholder="@" />
+            <input className="input after:text-black" type="" placeholder="@" />
           </div>
           <div className="wrap-input">
             <h4>O que você busca?</h4>
@@ -56,6 +65,7 @@ const cadastroPerfil = () => {
         </form>
       </div>
     </div>
+
   </div>
 
 
