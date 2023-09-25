@@ -1,9 +1,13 @@
 import React from "react";
 import logo from "../assets/logo redonda-svg.svg";
+import { useNavigate } from "react-router-dom";
+
 import "../styles.css";
 
-const Login = () => (
-    <div className="container-login">
+const Login = () => {
+  const navigate = useNavigate();
+
+  return (    <div className="container-login">
       <div className="wrap-login">
         <form className="login-form">
           <span className="login-form-title">
@@ -32,8 +36,8 @@ const Login = () => (
             <button className="login-form-btn">Logar</button>
           </div>
 
-          <div className="text-center">
-            <a className="txt1" href="#">
+          <div className="text-center " onClick={() => navigate("/cadastro")}>
+            <a className="txt1" href="#" >
               Criar uma conta
             </a>
           </div>
@@ -41,5 +45,5 @@ const Login = () => (
       </div>
     </div>
     );
-
+}
 export default Login;

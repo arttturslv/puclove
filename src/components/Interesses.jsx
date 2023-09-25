@@ -71,17 +71,32 @@ function Interesses({closeModal, setPlaceholder }) {
         setPlaceholder(interesses);
     }
 
+    /*
+    .lista-colunas {
+    column-count: 3; /* Número de colunas desejado 
+    column-gap: 20px; /* Espaço entre as colunas 
+    list-style-type: none; /* Remove os marcadores de lista 
+    padding: 0; /* Remove o espaçamento interno da lista 
+    }
+
+    .lista-colunas li {
+    margin-bottom: 10px; /* Espaço entre os itens da lista 
+    break-inside: avoid-column; /* Evita que um item seja dividido entre as colunas 
+    }
+    */
+
     return (
         <div className='flex justify-center items-center overlay top-0 w-[100%] h-screen fixed z-[999] bg-[#0003] bg-opacity-90'>
-            <div className='text-white shadow-md w-[50%] z-[1000] rounded-xl border-solid border-4 py-7 grid border-amareloOcre bg-cinzaBlack '>
+            <div className='text-white shadow-md w-[95%] md:w-[50%] z-[1000] h-auto md:h-fit	 rounded-xl border-solid border-4 py-7 grid border-amareloOcre bg-cinzaBlack '>
                 <div>
                     <h4 className='font-bold text-xl text-center'>Interesses</h4>
                     <p className='font-thin text-center'>Marque quantas opções quiser.</p>
                 </div>
-                <div className='font-normal text-white flex w-4/5 pt-3 justify-evenly flex-wrap'>
+                <div className='font-normal columns-auto	 text-white flex w-[95%] pt-3 justify-evenly flex-wrap'>
+
                     {exemplos.map(({ name }, index) => {
                         return (
-                            <li className="list-none pl-5" key={index}>
+                            <li className="list-none pl-5 py-[1%]" key={index}>
                                     <input
                                         type="checkbox"
                                         id={`custom-checkbox-${index}`}
@@ -94,7 +109,7 @@ function Interesses({closeModal, setPlaceholder }) {
                         );
                     })}
                 </div>
-                <button onClick={() => closeModal()} className='font-bold pt-5 flex justify-self-center'>
+                <button onClick={() => closeModal()} className='hover:text-amareloOcre font-bold pt-5 flex justify-self-center'>
                     Voltar
                 </button>
             </div>
