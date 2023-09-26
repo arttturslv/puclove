@@ -1,8 +1,9 @@
 import React from 'react';
 import "../StyleCadastro.css";
 import { useNavigate } from "react-router-dom";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import Interesses from '../components/Interesses';
+import api from '../api/axiosConfig';
 
 const cadastroPerfil = () => { 
   const navigate = useNavigate();
@@ -10,12 +11,25 @@ const cadastroPerfil = () => {
   const [openModal, setOpenModal] = useState(false);
 
   const [placeholder, setPlaceholder] = useState('Clique aqui para escolher');
+
+
+  
+  const [opcoes, setOpcoes] = useState();
+  useEffect(() => {
+    api
+      .get("/interests")
+      .then((response) => setOpcoes(response.data))
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+      });
+  }, []);
+
   
   return (
   
     <div className="container-cadastro">
       
-      {openModal && <Interesses closeModal={() => setOpenModal(!openModal)} setPlaceholder={setPlaceholder}  />}
+      {openModal && <Interesses closeModal={() => setOpenModal(!openModal)} setPlaceholder={setPlaceholder} opcoes={opcoes} />}
 
     <div className="container-cadastro">
       <div className="wrap-cadastro">
@@ -33,14 +47,14 @@ const cadastroPerfil = () => {
           <div className="wrap-input">
             <h4>Qual seu campos</h4>
             <select className="input" id="cursos" >
-              <option value="" disabled selected>Clique aqui para escolher</option>
+              <option value="" >Clique aqui para escolher</option>
               <option value="1">São Gabriel</option>
               <option value="2">Praça da Liberdade</option>
               <option value="3">Coração Eucarístico</option>
             </select>
           </div>
 
-          <div  className="wrap-input">
+          <div className="wrap-input">
             <h4>Quais seus interesses</h4>
             <input className="input  placeholder-white hover:placeholder-cinzaBlack" type="text" placeholder={placeholder} onClick={()=> setOpenModal(true)} />
           </div>
