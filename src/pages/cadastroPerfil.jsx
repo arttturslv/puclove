@@ -5,17 +5,33 @@ import {useState, useEffect} from "react";
 import Interesses from '../components/Interesses';
 import api from '../api/axiosConfig';
 
-const cadastroPerfil = () => { 
-  const navigate = useNavigate();
+const cadastroPerfil = ( {user, setMostrarComponente}) => { 
 
-  const [openModal, setOpenModal] = useState(false);
+  /* Isso aqui é o metodo post para usar quando receber todas as informações dos formularios
+  const json = JSON.stringify(user);
+  function createPost() {
+     api.post('/users', json, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  }
+  */
 
-  const [placeholder, setPlaceholder] = useState('Clique aqui para escolher');
+  const navigate = useNavigate(); //usado no botão continuar para ir para a home
 
+  const [clicado, setClicado] = useState(false);
 
+  const handleClick = (e) => { //verifica se clicaram para voltar no formulario anterior, se sim, atualiza o "clicado"
+    setClicado(true);
+  }
+  useEffect(() => { //caso o clicado seja atualizado, ele atualiza o valor do componente que esconde esse formulario e mostra o anterior.
+    setMostrarComponente(true) 
+  }, [clicado]);
   
-  const [opcoes, setOpcoes] = useState();
-  useEffect(() => {
+
+  const [opcoes, setOpcoes] = useState();   // state para armazenar os interesses pegados da api na variavel opções
+  useEffect(() => { //useEffect faz apenas um get 
     api
       .get("/interests")
       .then((response) => setOpcoes(response.data))
@@ -24,7 +40,10 @@ const cadastroPerfil = () => {
       });
   }, []);
 
-  
+  const [placeholder, setPlaceholder] = useState('Clique aqui para escolher'); //usado para armazenar os valores selecionados no modal de interesse
+  const [openModal, setOpenModal] = useState(false); //usado para abrir o modal de interesses.
+
+
   return (
   
     <div className="container-cadastro">
@@ -64,18 +83,17 @@ const cadastroPerfil = () => {
           </div>
           <div className="wrap-input">
             <h4>O que você busca?</h4>
-            <select className="input" id="interesse">
-              <option value="3">Sexo selvagem</option>
+            <select className="input" id="intencao">
+              <option value="3">Amizade</option>
               <option value="4">Um romance</option>
               <option value="5">Amigos para curtir uma festa</option>
               <option value="6">Pessoas bonitas</option>
             </select>
           </div>
           <div className="container-cadastro-form-btn">
-          <button onClick={() => navigate("/cadastro")} className="cadastro-form-btn" >Voltar</button>
+          <button onClick={handleClick} className="cadastro-form-btn" >Voltar</button>
             <button onClick={() => navigate("/")} className="cadastro-form-btn" >Continuar</button>
           </div>
-          
         </form>
       </div>
     </div>
