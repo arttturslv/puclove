@@ -10,6 +10,7 @@ import Login from './pages/login'
 import Cadastro from './pages/cadastro'
 import CadastroPerfil from './pages/cadastroPerfil'
 import PoliticaPrivacidade from './pages/politicasPrivacidade'
+import Matches from './pages/matches'
 import NotFound from './pages/notFound'
 
 //CRIANDO ARRAY DE ROTAS
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: "/politica-privacidade",
     element: <PoliticaPrivacidade/>
+  },
+  {
+    path: "/matches",
+    element: <Matches/>
   },
   {
     path: "*",

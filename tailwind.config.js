@@ -19,6 +19,7 @@ export default {
       'cinzaWhite': '#3B3B3B',
       'vermelhoSanguino': '#AD5E5E',
       'amareloOcre': '#E2C09B',
+      'amareloPalido': '#FAEFEC',
     },
   },
   plugins: [],
