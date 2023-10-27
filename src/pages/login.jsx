@@ -5,6 +5,13 @@ import { useNavigate } from "react-router-dom";
 import "../styles.css";
 
 const Login = () => {
+
+  if(localStorage.getItem("authToken")) { //evitar de entrar na pagina de login, com usuarios logados
+    setTimeout(() => {
+      navigate("/matches");
+    }, 0);
+  }
+
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,14 +33,19 @@ const Login = () => {
         },
         body: JSON.stringify(data),
       });
-  
+
       if (response.ok) {
+ 
         const userData = await response.json();
+        
+        console.log("Token armazenado.")
+        localStorage.setItem("authToken", userData.token);
+
         setUser(userData);
         window.alert("Login autenticado");
-  
+
         setTimeout(() => {
-          navigate("/home");
+          navigate("/");
         }, 2000);
       } else {
         console.error("Falha no login");
