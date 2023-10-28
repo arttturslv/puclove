@@ -92,7 +92,7 @@ const cadastroPerfil = ( {user, setMostrarComponente}) => {
           </div>
           <div className="container-cadastro-form-btn">
           <button onClick={handleClick} className="cadastro-form-btn" >Voltar</button>
-            <button onClick={() => navigate("/")} className="cadastro-form-btn" >Continuar</button>
+            <button onClick={() => navigate("/")} className="cadastro-form-btn" >Cadastrar</button>
           </div>
         </form>
       </div>
