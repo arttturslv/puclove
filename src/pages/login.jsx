@@ -45,7 +45,7 @@ const Login = () => {
         window.alert("Login autenticado");
 
         setTimeout(() => {
-          navigate("/");
+          navigate("/matches");
         }, 2000);
       } else {
         console.error("Falha no login");

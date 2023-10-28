@@ -44,7 +44,7 @@ const Home = () => {
                         <img src="../src/assets/Caricaturas/animadas/alex-gif.gif" alt="Alex, um estudante" className='absolute z-[0] top-0 ' />
                     </div>
                     <h5 className='font-semibold text-lg'>Alex Gonçalves</h5>
-                    <p>Dev. front-end<br />Scrum Master</p>
+                    <p>Dev. front-end</p>
 
                 </div>
                 <div onClick={anna} className="anna hover:scale-105 cursor-zoom-in	 flex-col text-center">
@@ -70,7 +70,7 @@ const Home = () => {
                         <img src="../src/assets/Caricaturas/animadas/davi-gif.gif" alt="Davi, um estudante" className='absolute z-[0] top-0 ' />
                     </div>
                     <h5 className='font-semibold text-lg'>Davi Ribeiro</h5>
-                    <p>Dev. back-end<br />Product Owner</p>
+                    <p>Dev. back-end</p>
                 </div>
                 <div onClick={tulio} className="tulio hover:scale-105  cursor-zoom-in	  flex-col text-center">
                     <div className='relative'>

@@ -1,39 +1,64 @@
 import { } from "react-router-dom";
 import Slider from "../components/Slider";
 import { useMatchData } from "../hooks/useMatchData";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const matches = () => {
-     /*
-     const {data} = useMatchData();
-        //vou ter que pegar o array de pessoas e pegar as posições e exibir
-        quando clicar pra mudar, eu aumento a posição, se chegar no maximo, avisa q não tem mais gente e bloqueia.
-        sm:w-[80%] md:w-[60%] lg:w-[45%] xl:w-[40%] 2xl:w-[33%]w-[100%]
+     
+    const navigate = useNavigate(); //usado no botão continuar para ir para a home
 
 
-        w-[100%] sm:w-[80%] md:w-[60%] lg:w-[45%] xl:w-[40%] 2xl:w-[33%]w-[100%] bottom-[5%] px-7 left-[50%] -translate-x-[50%] translate-y-0 -- SlideProfile
-    */
+    const [id, setID] = useState(1);
+    const [data, setData] = useState(undefined); // Estado para controlar o carregamento
 
-    return (
-        <div className="w-full bg-amareloOcre">
-        <div id='central' className=" pb-10 w-[500px] bg-cinzaBlack">
-            
-            <div id='btnHeader' className=" flex justify-center m-0">
-                <img src="../src/assets/Icones/chat.svg" alt="icone de chat" className='w-[10%] xl:w-[8%] m-3 ' />
-                <img src="../src/assets/Icones/icon configuracoes.svg" alt="icone de configurações" className='w-[10%] xl:w-[8%] m-3' />
-                <img src="../src/assets/Icones/minhasCurtidas.svg" alt="icone de minhas curtidas" className='w-[10%] xl:w-[8%] m-3' />
+    useEffect(() => {
+        const fetchData = async () => {
+          const response = await useMatchData();
+          setData(response.data); // Atualize o estado com a resposta da API
+        };
+    
+        fetchData(); // Chame a função fetchData
+      }, []);
+    
+    const incrementar = () => {
+        if(id+1!=data.length) {
+            setID(id + 1);
+        } else {
+            alert("Já curtiu tudo.")
+        }
+    };
+    const diminuir = () => {
+        if(id!=0) {
+            setID(id - 1);
+        }
+    };
+    
+    return data!=undefined && (
+        
+    <div className="w-full h-screen bg-amareloOcre">
+    <div id='central' className=" pb-10 w-[500px] bg-cinzaBlack">
+            <div id='btnHeader' className="h-[50px] py-1 w-[500px] flex justify-center">
+                <div className="absolute grid grid-cols-3">
+                    <img src="../src/assets/Icones/chat.svg" alt="icone de chat" className='w-[65%] hover:w-[70%] active:w-[62%] transition ease-in-out'/>
+                    <img onClick={() => navigate("/sett")} src="../src/assets/Icones/icon configuracoes.svg" alt="icone de configurações" className='w-[65%] hover:w-[70%] active:w-[62%] transition ease-in-out'/>
+                    <img src="../src/assets/Icones/minhasCurtidas.svg" alt="icone de minhas curtidas" className='w-[65%] hover:w-[70%] active:w-[62%] transition ease-in-out'/>
+                </div>
             </div>
 
             <div id='matchProfile'>
                 <Slider/>
                 <div id='SlideProfile' className="text-white absolute translate-y-[-180px] ">
-                    <h3 className="text-2xl font-semibold pl-4">Giovana Mello, 20</h3>
-                    <h4 className="text-sm font-medium pl-4">PUC Minas - SG</h4>
-                    <h4 className="text-sm font-medium pl-4">Karma is a bitch!</h4>
+                    <h3 className="text-2xl font-semibold pl-4">{data[id].name}</h3>
+                    <h4 className="text-sm font-medium pl-4">{data[id].course}</h4>
+                    <h4 className="text-sm font-medium pl-4">{data[id].campus}</h4>
                 </div>
-                <div id='btnProfile' className="flex justify-center absolute -translate-x-[-20%] translate-y-[-100px]">
-                        <img src="../src/assets/Icones/icon resetar.svg" alt="icone de voltar" className='w-[12%] m-5'/>
-                        <img src="../src/assets/Icones/icon not_match.svg" alt="icone de negar" className='w-[12%] m-5'/>
-                        <img src="../src/assets/Icones/icon match.svg" alt="icone de curtir" className='w-[12%] m-5'/>
+                <div id='btnProfile' className="h-[20px] py-1 w-[500px] flex justify-center">
+                    <div className=" absolute translate-y-[-100px] grid grid-cols-3">
+                        <img onClick={diminuir} src="../src/assets/Icones/icon resetar.svg" alt="icone de voltar" className='w-[75%] hover:w-[80%] active:w-[70%] transition ease-in-out'/>
+                        <img onClick={incrementar} src="../src/assets/Icones/icon not_match.svg" alt="icone de negar" className='w-[75%] hover:w-[80%] active:w-[70%] transition ease-in-out'/>
+                        <img onClick={incrementar} src="../src/assets/Icones/icon match.svg" alt="icone de curtir" className='w-[75%] hover:w-[80%] active:w-[70%] transition ease-in-out'/>
+                    </div>
                 </div>
             </div>
 
@@ -57,7 +82,9 @@ const matches = () => {
             </div>
 
         </div>
+
     </div>
     )
 }
+
 export default matches;
