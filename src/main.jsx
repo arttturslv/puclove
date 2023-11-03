@@ -12,6 +12,7 @@ import CadastroPerfil from './pages/cadastroPerfil'
 import PoliticaPrivacidade from './pages/politicasPrivacidade'
 import Matches from './pages/matches'
 import NotFound from './pages/notFound'
+import Configuracao from "./pages/config";
 
 //CRIANDO ARRAY DE ROTAS
 const router = createBrowserRouter([
@@ -42,7 +43,11 @@ const router = createBrowserRouter([
   {
     path: "*",
     element: <NotFound/>
-  }
+  },
+  {
+    path: "/config",
+    element: <Configuracao />,
+  },
 ])
 
 

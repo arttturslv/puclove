@@ -1,0 +1,247 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;300;500&display=swap");
+
+* {
+  margin: 0; /*PARA AS PÁGINAS DO ARTUR FICAR CERTA É SÓ COLOCAR margin: 0 auto*/
+  padding: 0;
+}
+
+.container-config {
+  height: 100%;
+  width: 100%;
+
+  background-color: #e2c09b;
+  font-family: "Inter", sans-serif;
+}
+
+.wrap-config {
+  width: 900px;
+  height: 1620px;
+  background-color: #333333;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+  margin-right: auto;
+  color: white;
+
+  display: grid;
+  grid-template-columns: 410px 400px;
+  grid-template-rows: 50px 430px 950px 115px;
+  gap: 10px;
+  grid-template-areas: "topo1 voltar" "conta nulo1" "perfil imagens" "seguranca nulo2";
+  padding-left: 35px;
+  padding-top: 30px;
+}
+
+.topo {
+  grid-area: topo1;
+  display: flex;
+}
+
+.title_config {
+  font-weight: 600;
+  font-size: 20px;
+  display: flex;
+  justify-items: start;
+  align-items: end;
+}
+
+.info_conta {
+  grid-area: conta;
+}
+
+.logout {
+  padding-top: 1.5px;
+  padding-left: 12px;
+  display: flex;
+  font-weight: 400;
+  line-height: normal;
+  align-items: center;
+  height: 50px;
+  width: 130px;
+  border-radius: 15px;
+  background: var(--Cinza-white, #3b3b3b);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.work_mode {
+  padding-top: 1.5px;
+  padding-left: 12px;
+  display: flex;
+  font-weight: 400;
+  line-height: normal;
+  align-items: center;
+  height: 50px;
+  width: 230px;
+  border-radius: 15px;
+  background: var(--Cinza-white, #3b3b3b);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.buttons_conta {
+  padding-top: 20px;
+  display: flex;
+  gap: 30px;
+}
+
+.img_return,
+.img_workmode,
+.img_lixeira {
+  padding-top: 4px;
+  padding-left: 8px;
+  height: 32px;
+}
+
+.text_button {
+  font-size: 18px;
+  padding-left: 7px;
+}
+
+.title_conta {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.subtitle_config {
+  font-weight: 600;
+  padding-top: 3px;
+  padding-left: 10px;
+}
+
+.description {
+  font-weight: 300;
+  padding-left: 10px;
+}
+
+.subinfo_conta {
+  padding-top: 5px;
+}
+
+.divider {
+  grid-area: perfil;
+  width: 725px;
+  height: 3px;
+  color: rgba(0, 0, 0, 0.17);
+  padding-bottom: 15px;
+}
+
+.info_perfil {
+  grid-area: perfil;
+}
+
+.form-input {
+  width: 400px;
+  height: 90px;
+  padding-top: 10px;
+}
+
+.input_config {
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.2;
+  border: none;
+  width: 390px;
+  height: 50px;
+  background-color: transparent;
+  padding: 7px 15px;
+  border-radius: 10px;
+  background: #434343;
+}
+
+.form-input_about {
+  padding-top: 10px;
+}
+
+.input_config_about {
+  white-space: pre-line;
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.2;
+  border: none;
+  width: 390px;
+  height: 250px;
+  background-color: transparent;
+  padding: 7px 15px;
+  border-radius: 10px;
+  background: #434343;
+}
+
+.form-input h4 {
+  color: #fff;
+  font-weight: 600;
+  padding-bottom: 5px;
+}
+
+.form-input_about h4 {
+  color: #fff;
+  font-weight: 600;
+  padding-bottom: 5px;
+}
+
+.images {
+  padding-top: 50px;
+  grid-area: imagens;
+  display: grid;
+  grid-template-columns: 200px 200px;
+  grid-template-rows: 200px 200px;
+  gap: 5px;
+}
+
+.image_profile {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.picture_input {
+  display: none;
+}
+
+.picture {
+  width: 170px;
+  height: 170px;
+  background: #434343;
+  border-radius: 14px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  color: #fff; /* Adicionado para garantir que o texto seja branco */
+}
+
+.picture:hover {
+  color: #e2c09b;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.choose_image {
+  border-radius: 14px;
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
+}
+
+.info_segurança {
+  grid-area: seguranca;
+}
+
+.title_security {
+  font-weight: 500;
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+
+.config_security {
+  padding-left: 3px;
+  display: flex;
+  font-weight: 400;
+  line-height: normal;
+  align-items: center;
+  height: 50px;
+  width: 250px;
+  border: 3px solid var(--Vermelho-Sanguino, #ad5e5e);
+  border-radius: 15px;
+  background: var(--Cinza-white, #3b3b3b);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+}
