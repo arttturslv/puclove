@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import "../styles.css";
 
+const loginEndpoint = "http://localhost:8080/auth/login";
+
 const Login = () => {
 
   if(localStorage.getItem("authToken")) { //evitar de entrar na pagina de login, com usuarios logados
@@ -26,7 +28,7 @@ const Login = () => {
         password,
       };
   
-      const response = await fetch("http://localhost:8080/auth/login", {
+      const response = await fetch(loginEndpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

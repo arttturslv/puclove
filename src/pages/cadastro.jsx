@@ -1,45 +1,88 @@
 import React, { useEffect } from 'react';
 import "../StyleCadastro.css";
 import {useState} from 'react'
-import CadastroPerfil from "../pages/cadastroPerfil";
 import {useForm} from "react-hook-form"; 
+import axios from "axios";
+import api from '../api/axiosConfig';
+import Interesses from '../components/Interesses';
+import { useNavigate } from "react-router-dom";
 
-const Cadastro = () => {
-    
-  //cria um obj user pra armazenar as respostas dos formularios.
+const RegistrationForm = () => {
+  const {
+	  register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+    getValues
+  } = useForm();
+
   const [newUser, setNewUser] = useState({
     name: "",
-    email: "", //@sga.pucminas.br
+    email: "",
     password: "",
-    birthDate: "", //2021-02-21" ano, mes, dia -------- fim da primeira pagina
+    birthDate: "",
     course: "",
-    campus: "", //São Gabriel, Praça da Liberdade, Coração Eucaristico.
-    interestsIds: [""], //é o id do interesse -> 650f6763affad354ee338325
+    campus: "",
+    interests: [], //array interests está mockado por enquanto
     instagram: "",
-    intention: "", //FRIENDSHIP, SOMETHING_CASUAL, SERIOUS_RELATIONSHIP
+    intention: "",
+    role: "USER"
   });
 
-const [mostrarComponente, setMostrarComponente] = useState(false); //mostrar o CadastroPerfil
+  //TODO: arrumar o hook que guarda o state do usuário, está sendo amazenado só depois que envia o form de submit, talvez separar o setNewUser do post
 
-const handleClickCadastro = (e) => { //se clicar para continuar, ele mostra o cadastroPerfil e esconde o cadastro atual.
-  e.preventDefault()
-  setMostrarComponente(true);
-}
+  const onSubmit = async (data) => {
+    
+    let arrayInterests = placeholder.split(', ');
+    data.interests = arrayInterests;
 
-  const {register, handleSubmit, getValues, watch, formState: {errors}} = useForm();
+    await setNewUser((prevUser) => ({ ...prevUser, ...data }));
 
-  const onSubmit = (data, e) => {
-    e.preventDefault();
-    console.log(data)
-    handleClickCadastro(e);
+    console.log(data.interests)
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/auth/register",
+        newUser
+      );
+      console.log("Registration successful", response.data);
+      alert("registrado com sucesso")
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    } catch (error) {
+      console.error("Registration failed", error);
+    }
+  };
+
+  const [clicado, setClicado] = useState(false);
+
+  const handleClick = (e) => { //verifica se clicaram para voltar no formulario anterior, se sim, atualiza o "clicado"
+    setClicado(true);
   }
+  // useEffect(() => { //caso o clicado seja atualizado, ele atualiza o valor do componente que esconde esse formulario e mostra o anterior.
+  //   setMostrarComponente(true) 
+  // }, [clicado]);
+  
 
-  //Ao passar pro cadastroPerfil, ele manda o JSON de user e o state para mostrar/esconder componente.
-    return (
-    <div className="container-cadastro">
-    {mostrarComponente && <CadastroPerfil  user={newUser} setMostrarComponente={setMostrarComponente} />} 
-    {!mostrarComponente && ( 
+  const [opcoes, setOpcoes] = useState();   // state para armazenar os interesses pegados da api na variavel opções
+  useEffect(() => { //useEffect faz apenas um get 
+    api
+      .get("/interests")
+      .then((response) => setOpcoes(response.data))
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+      });
+  }, []);
+
+  const [placeholder, setPlaceholder] = useState('Clique aqui para escolher'); //usado para armazenar os valores selecionados no modal de interesse
+  const [openModal, setOpenModal] = useState(false); //usado para abrir o modal de interesses.
+  const navigate = useNavigate();
+
+  return (
     <div className="container-cadastro ">
+
+    {openModal && <Interesses closeModal={() => setOpenModal(!openModal)} setPlaceholder={setPlaceholder} opcoes={opcoes} />}
+
       <div className="wrap-cadastro">
         <form className="cadastro-form">
           
@@ -80,8 +123,41 @@ const handleClickCadastro = (e) => { //se clicar para continuar, ele mostra o ca
           </div>
           <div className="wrap-input">
             <h4>Quando você nasceu</h4>
-            <input className="input datepickerbg" type="date" placeholder="01/01/1900" name="birthdate"  {...register('birthdate', {required:true})}/>
+            <input className="input datepickerbg" type="date" placeholder="01/01/1900" name="birthDate"  {...register('birthDate', {required:true})}/>
             {errors?.date?.type === 'valueAsDate' && <p className=' text-vermelhoSanguino'>Data invalida*</p>}
+          
+
+          <div className="wrap-input">
+            <h4>Qual seu curso</h4>
+            <input className="input" type="text" placeholder="Digite seu curso" name="course" {...register('course', {required:true})}/>
+          </div>
+
+          <div className="wrap-input">
+            <h4>Qual seu campus</h4>
+            <select className="input" id="cursos" name="campus" {...register('campus', {required:true})}>
+              <option value="" >Clique aqui para escolher</option>
+              <option value="São Gabriel">São Gabriel</option>
+              <option value="Praça da Liberdade">Praça da Liberdade</option>
+              <option value="Coração Eucarístico">Coração Eucarístico</option>
+            </select>
+          </div>
+
+          <div className="wrap-input">
+            <h4>Quais seus interesses</h4>
+            <input className="input  placeholder-white hover:placeholder-cinzaBlack" name="interests" type="text" placeholder={placeholder} onClick={()=> setOpenModal(true)} />
+          </div>
+          <div className="wrap-input">
+            <h4>Qual seu instagram</h4>
+            <input className="input after:text-black" type="" placeholder="@" name="instagram" {...register('instagram', {required:true})}/>
+          </div>
+          <div className="wrap-input">
+            <h4>O que você busca?</h4>
+            <select className="input" id="intencao" name="intention" {...register('intention', {required:true})}>
+              <option value="FRIENDSHIP">Amizade</option>
+              <option value="SERIOUS_RELATIONSHIP">Um romance</option>
+              <option value="SOMETHING_CASUAL">Amigos para curtir uma festa</option>
+            </select>
+          </div>  
 
           </div>
           <div className="container-cadastro-form-btn">
@@ -91,9 +167,6 @@ const handleClickCadastro = (e) => { //se clicar para continuar, ele mostra o ca
         </form>
       </div>
     </div>
-    )}
-  </div>
+    )};
 
-)};
-
-export default Cadastro;
+export default RegistrationForm;
