@@ -4,19 +4,10 @@ import { useState } from 'react';
 function Slider() {
     const slides = [
         {
-            url: 'https://blog.dubstore.com.br/wp-content/uploads/2022/04/melhores_carros_para_tunar_capa.jpg'
+            url: 'https://upload.wikimedia.org/wikipedia/commons/b/b4/Entradapucminas.jpg'
         },
         {
-            url: 'https://novovarejoautomotivo.com.br/wp-content/uploads/2020/04/carro-tunado-mitsubishi.jpg'
-        },
-        {
-            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi2hiTCi90XuJyJ1E_tGAyXIUrrDMHkt8p4EjvQ6zd4xt3OGZmaO1DxaiWpKZVVUVhZlw&usqp=CAU'
-        },
-        {
-            url: 'https://quatrorodas.abril.com.br/wp-content/uploads/2017/05/golf_gti_rs_concept_7201-e1594143195136.jpg?quality=70&strip=info'
-        },
-        {
-            url: 'https://www.salaodecarros.com.br/images/FotosDeCarrosTunados/Carro_Tunado.jpg'
+            url: 'https://conexao.pucminas.br/wp-content/uploads/2023/06/WhatsApp-Image-2023-06-23-at-11.53.44.jpeg'
         }
     ];
 

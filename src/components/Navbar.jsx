@@ -23,10 +23,15 @@ const Navbar = () => {
 
     const navigate = useNavigate();
 
+    function logout() {
+        localStorage.removeItem("authToken");
+        alert("Saindo da conta.")
+        location.reload();
+    }
 
     return (
-        <div className='w-full bg-vermelhoSanguino md:bg-transparent z-20'>
-            <div className=' max-w-7xl md:flex items-center justify-start py-4 md:px-10 px-7'>
+        <div className='w-full m-0 my-auto mx-auto bg-vermelhoSanguino md:bg-transparent z-20'>
+            <div className=' m-0 my-auto mx-auto max-w-7xl md:flex items-center justify-start py-4 md:px-10 px-7'>
 
                 <div className='z-20 text-2x1 cursor-pointer flex m-0 items-center gap-2 text-amareloOcre'>
                     <img className=' m-0 w-7 h-7 ' src="../src/assets/logo redonda-svg.svg" alt="Uma logo formada por duas mãos formando um coração;" />
@@ -69,11 +74,16 @@ const Navbar = () => {
 
                     <div className=' text-amareloOcre md:text-black ml-0'>
                         { token==null ? 
+                            <div>
                             <button onClick={() => navigate("/login")} className='btn font-semibold  hover:md:text-amareloOcre hover:text-black bg-amareloOcre text-vermelhoSanguino md:text-black md:bg-white rounded-full px-3 py-1 md:static '>Login</button>
+                            <button onClick={() => navigate("/cadastro")} className='btn font-semibold  hover:text-white rounded-full px-3  md:static '>Cadastrar</button>
+                            </div>
                             :
+                            <div>
                             <button onClick={() => navigate("/matches")} className='btn font-semibold  hover:md:text-amareloOcre hover:text-black bg-amareloOcre text-vermelhoSanguino md:text-vermelhoSanguino md:bg-white rounded-full px-3 py-1 md:static '>Match</button>
+                            <button onClick={logout} className='btn font-semibold  hover:text-white rounded-full px-3  md:static '>Logout</button>
+                            </div>
                             }
-                        <button onClick={() => navigate("/cadastro")} className='btn font-semibold  hover:text-white rounded-full px-3  md:static '>Cadastrar</button>
                     </div>
 
                 </ul>
