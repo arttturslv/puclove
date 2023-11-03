@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import voltar from "../assets/Icones/icon voltar.svg";
@@ -7,7 +7,7 @@ import "../stylesConfig.css";
 
 const Configuracao = () => {
   const navigate = useNavigate();
-  // Inicializa referências para as imagens e arquivos de entrada
+  const [accessToken, setAccessToken] = useState(localStorage.getItem("authToken"));
   const pictureImageRefs = Array.from({ length: 6 }, () => useRef(null));
   const inputFileRefs = Array.from({ length: 6 }, () => useRef(null));
 
@@ -18,13 +18,12 @@ const Configuracao = () => {
     try {
       const response = await axios.post("http://localhost:8080/api/v1/image", formData, {
         headers: {
+          'Authorization': `Bearer ${accessToken}`,
           "Content-Type": "multipart/form-data",
         },
       });
-      // Aqui você pode lidar com a resposta da solicitação de upload, se necessário
-      console.log(response.data); // A resposta pode conter o caminho da imagem salva no sistema de arquivos
+      console.log(response.data);
     } catch (error) {
-      // Se ocorrer um erro durante o upload
       console.error("Erro ao fazer upload da imagem: ", error);
     }
   };
@@ -40,7 +39,6 @@ const Configuracao = () => {
         img.src = e.target.result;
         img.classList.add("choose_image");
 
-        // função de upload de imagem 
         uploadImage(file);
 
         pictureImageRefs[index].current.innerHTML = "";
@@ -53,7 +51,6 @@ const Configuracao = () => {
     }
   };
 
-  // Função para renderizar os perfis de imagem
   const renderImageProfiles = () => {
     return Array.from({ length: 6 }, (_, index) => (
       <div className="image_profile" key={index}>
