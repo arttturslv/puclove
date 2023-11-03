@@ -62,7 +62,7 @@ const Login = () => {
           <span className="login-form-title">
             <img src={logo} alt="PucLove" />
           </span>
-          <span className="login-form-title">Venha encontrar seu parceiro!</span>
+          <span className="login-form-title">Venha encontrar seu parceira!</span>
 
           <div className="wrap-input">
             <h4>Digite o e-mail</h4>
