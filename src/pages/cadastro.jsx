@@ -79,12 +79,11 @@ const RegistrationForm = () => {
   const navigate = useNavigate();
 
   return (
+    <form className="cadastro-form">
     <div className="container-cadastro ">
-
-    {openModal && <Interesses closeModal={() => setOpenModal(!openModal)} setPlaceholder={setPlaceholder} opcoes={opcoes} />}
-
+      {openModal && <Interesses closeModal={() => setOpenModal(!openModal)} setPlaceholder={setPlaceholder} opcoes={opcoes} />}
       <div className="wrap-cadastro">
-        <form className="cadastro-form">
+      
           
           <span className="cadastro-form-title">
           Cadastre e conheça seu amor
@@ -125,9 +124,15 @@ const RegistrationForm = () => {
             <h4>Quando você nasceu</h4>
             <input className="input datepickerbg" type="date" placeholder="01/01/1900" name="birthDate"  {...register('birthDate', {required:true})}/>
             {errors?.date?.type === 'valueAsDate' && <p className=' text-vermelhoSanguino'>Data invalida*</p>}
-          
+            </div>
 
-          <div className="wrap-input">
+            </div>
+            </div>
+            <div className="container-cadastro ">
+            <div className="wrap-cadastro">
+              
+          
+            <div className="wrap-input">
             <h4>Qual seu curso</h4>
             <input className="input" type="text" placeholder="Digite seu curso" name="course" {...register('course', {required:true})}/>
           </div>
@@ -159,14 +164,15 @@ const RegistrationForm = () => {
             </select>
           </div>  
 
-          </div>
+          
           <div className="container-cadastro-form-btn">
             <button type='submit' onClick={(e) => handleSubmit(onSubmit)(e)} className="cadastro-form-btn" >Continuar</button>
-
           </div>
-        </form>
+       
+
       </div>
     </div>
+    </form>
     )};
 
 export default RegistrationForm;

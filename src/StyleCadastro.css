@@ -18,12 +18,17 @@
   box-sizing: border-box;
 }
 
+div{
+  width: 100%;
+  
+}
+
 .datepickerbg {
   color-scheme: dark;
 }
 
 .container-cadastro {
-    
+  
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -36,6 +41,7 @@
     overflow: hidden;
     padding-left: 8px;
     padding-right: 8px;
+  
       
 }
 
