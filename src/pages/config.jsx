@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import voltar from "../assets/Icones/icon voltar.svg";
@@ -6,6 +6,7 @@ import work_mode from "../assets/Icones/icon workmode.svg";
 import "../stylesConfig.css";
 
 const Configuracao = () => {
+
   const navigate = useNavigate();
   const [accessToken, setAccessToken] = useState(localStorage.getItem("authToken"));
   const pictureImageRefs = Array.from({ length: 6 }, () => useRef(null));
@@ -50,6 +51,44 @@ const Configuracao = () => {
       pictureImageRefs[index].current.innerHTML = "+";
     }
   };
+  let info = "-------------------------------------------- artur"
+  const [searchInput, setSearchInput] = useState("");
+  const [accessAPIToken, setAccessAPIToken] = useState("");
+  const [musicaPesquisa, setMusicaPesquisa] = useState("");
+
+  const CLIENT_ID = "6e405048be884c30afdb08703ad691a5";
+  const CLIENT_SECRET = "c8aff7e35fc9480485a820872499ebeb";
+
+  useEffect(() => {
+    //acesso a api
+    var authParams = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: 'grant_type=client_credentials&client_id='+CLIENT_ID+ "&client_secret=" +CLIENT_SECRET 
+    }
+    fetch('https://accounts.spotify.com/api/token', authParams)
+      .then(result => result.json())
+      .then(data => setAccessAPIToken(data.access_token))
+  }, [])
+
+  async function search () {
+    console.log("Procurando por "+searchInput);
+    console.log(accessAPIToken)
+    var songParameters = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${accessAPIToken}`,
+      }
+    }
+    var songs = await fetch ('https://api.spotify.com/v1/search?q='+searchInput+"&type=track", songParameters)
+      .then(response=> response.json())
+      .then(data=> setMusicaPesquisa(data.tracks.items[0].album))
+
+  }
+
 
   const renderImageProfiles = () => {
     return Array.from({ length: 6 }, (_, index) => (
@@ -145,13 +184,32 @@ const Configuracao = () => {
               <input
                 className="input_config"
                 type="text"
-                placeholder="The Dragonborn Comes - Malukah"
+                placeholder="Nome da musica predileta."
+                onKeyUp={e => {
+                  console.log("ea")
+                  if(e.key === "Enter") {
+                    console.log("Pressed enter")
+                    search();
+                  }
+                }}
+                onChange={event=> setSearchInput(event.target.value)}
               />
+             {musicaPesquisa != ""?
+              <div id="musics" className="z-50 flex absolute bg-yellow">
+                  <div id="imgSong" className="w-[50%]">
+                      <img className="w-[80px]" src={musicaPesquisa.images[0].url} alt="" />
+                  </div>
+                  <div id="song" className="w-[50%]">
+                    <h1>{musicaPesquisa.name}</h1>
+                    <p>{musicaPesquisa.artists[0].name}</p>
+                  </div>
+              </div>
+              : <p></p> }
             </div>
             <div className="form-input">
               <h4>O que você busca?</h4>
               <input
-                className="input_config"
+                className="input_config z-0"
                 type="text"
                 placeholder="Algo casual, nas noites de sexta."
               />
