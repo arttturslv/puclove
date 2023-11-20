@@ -56,8 +56,8 @@ const Configuracao = () => {
   const [accessAPIToken, setAccessAPIToken] = useState("");
   const [musicaPesquisa, setMusicaPesquisa] = useState("");
 
-  const CLIENT_ID = "6e405048be884c30afdb08703ad691a5";
-  const CLIENT_SECRET = "c8aff7e35fc9480485a820872499ebeb";
+  const CLIENT_ID = "";
+  const CLIENT_SECRET ="";
 
   useEffect(() => {
     //acesso a api
