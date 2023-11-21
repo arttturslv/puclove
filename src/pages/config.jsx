@@ -56,8 +56,8 @@ const Configuracao = () => {
   const [accessAPIToken, setAccessAPIToken] = useState("");
   const [musicaPesquisa, setMusicaPesquisa] = useState("");
 
-  const CLIENT_ID = "6e405048be884c30afdb08703ad691a5";
-  const CLIENT_SECRET = "c8aff7e35fc9480485a820872499ebeb";
+  const CLIENT_ID = "";
+  const CLIENT_SECRET = "";
 
   useEffect(() => {
     //acesso a api
@@ -85,7 +85,7 @@ const Configuracao = () => {
     }
     var songs = await fetch ('https://api.spotify.com/v1/search?q='+searchInput+"&type=track", songParameters)
       .then(response=> response.json())
-      .then(data=> setMusicaPesquisa(data.tracks.items[0].album))
+      .then(data=> setMusicaPesquisa(data.tracks.items.slice(0,5)))
 
   }
 
@@ -195,15 +195,19 @@ const Configuracao = () => {
                 onChange={event=> setSearchInput(event.target.value)}
               />
              {musicaPesquisa != ""?
-              <div id="musics" className="z-50 flex absolute bg-yellow">
-                  <div id="imgSong" className="w-[50%]">
-                      <img className="w-[80px]" src={musicaPesquisa.images[0].url} alt="" />
-                  </div>
-                  <div id="song" className="w-[50%]">
-                    <h1>{musicaPesquisa.name}</h1>
-                    <p>{musicaPesquisa.artists[0].name}</p>
-                  </div>
-              </div>
+              <div id="musics" className="z-50 relative rounded flex flex-wrap  bg-black h[500px]">
+                  {musicaPesquisa.map(list => (
+                    <div id="song" key={list.id} onClick={()=> console.log(list.name)} className=" flex relative h[500px] w-[100%] m-2 bg-yellow" >
+                      <div id="imgSong" className="w-[50%]">
+                          <img className="w-[80px]" src={list.album.images[0].url} alt="" />
+                      </div>
+                      <div id="txtSong" className="w-[50%]">
+                        <h1>{list.name}</h1>
+                        <p>{list.artists[0].name}</p>
+                      </div>
+                    </div>
+                  ))}
+              </div>   
               : <p></p> }
             </div>
             <div className="form-input">
