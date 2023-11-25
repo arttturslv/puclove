@@ -7,11 +7,18 @@
   padding: 0;
   box-sizing: border-box;
 }
+#transicao {
+  background: rgb(51,51,51);
+  background: linear-gradient(0deg, rgba(51,51,51,1) 49%, rgba(51,51,51,0) 79%);
+}
 
+#central::-webkit-scrollbar {
+  width: 0px;
+}
 /* Estilo do contêiner principal */
 .container-login {
   width: 100%;
-  min-height: 100vh;
+  height: 92.5vh;
   display: flex;
   justify-content: center;
   align-items: center;

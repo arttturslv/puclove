@@ -12,12 +12,7 @@ const Navbar = () => {
 
     let [isOpen, setisOpen] = useState(false)
 
-    let Links = [
-        { name: "Sobre", link: "sobre" },
-        { name: "Regras", link: "regras" },
-        { name: "Privacidade", link: "privacidade" },
 
-    ]
 
     console.log(token);
 
@@ -33,7 +28,7 @@ const Navbar = () => {
         <div className='w-full m-0 my-auto mx-auto bg-vermelhoSanguino md:bg-transparent z-20'>
             <div className=' m-0 my-auto mx-auto max-w-7xl md:flex items-center justify-start py-4 md:px-10 px-7'>
 
-                <div className='z-20 text-2x1 cursor-pointer flex m-0 items-center gap-2 text-amareloOcre'>
+                <div  onClick={() => navigate("/")} className='z-20 text-2x1 cursor-pointer flex m-0 items-center gap-2 text-amareloOcre'>
                     <img className=' m-0 w-7 h-7 ' src="../src/assets/logo redonda-svg.svg" alt="Uma logo formada por duas mãos formando um coração;" />
                     <span className=' m-0   font-extrabold'>PucLove</span>
                 </div>
@@ -49,17 +44,11 @@ const Navbar = () => {
 
                 <ul className={`z-1  bg-vermelhoSanguino md:pl-8 text-amareloOcre md:bg-transparent md:flex md:items-center md:pb-0 absolute md:static md:z-auto  pb-6 left-0 w-full  mt-4 md:mt-0 pl-9 transition-all duration-500 ease-in-out ${isOpen ? 'top-10' : 'top-[-490px]'} `}>
    
-                    <li className='pb-2 md:pb-0'>
-                        <Link to={"sobre"} activeClass='active' smooth={true}
-                            spy={true} className=' hover:text-white cursor-pointer md:px-5 font-semibold transition-all duration-500  hover:text-primary  '
-                        >Sobre
-                        </Link>
+                    <li className='pb-2 md:pb-0 hover:text-white cursor-pointer md:px-5 font-semibold transition-all duration-500  hover:text-primary  '   onClick={() => navigate("/#sobre")}>
+                    Sobre
                     </li>
-                    <li className='pb-2 md:pb-0'>
-                        <Link to={"regras"} activeClass='active' smooth={true}
-                            spy={true} className='  hover:text-white cursor-pointer md:px-5 font-semibold transition-all duration-500  hover:text-primary  '
-                        >Regras
-                        </Link>
+                    <li className='pb-2 md:pb-0 hover:text-white cursor-pointer md:px-5 font-semibold transition-all duration-500  hover:text-primary  '    onClick={() => navigate("/#regras")}>
+                    Regras
                     </li>
                     <li className='pb-2 md:pb-0'>
                         <LinkExternal to={"/politica-privacidade"} 

@@ -4,6 +4,7 @@ import axios from "axios";
 import voltar from "../assets/Icones/icon voltar.svg";
 import work_mode from "../assets/Icones/icon workmode.svg";
 import "../stylesConfig.css";
+import Navbar from "../components/Navbar";
 
 const Configuracao = () => {
 
@@ -110,7 +111,11 @@ const Configuracao = () => {
   };
 
   return (
+    <div className=" bg-cover w-full h-full bg-[url('../src\assets\background-linhas.svg')]">
+          <Navbar />
+
     <div className="container-config">
+
       <div className="wrap-config">
         <div className="topo">
           <div className="title_config">
@@ -264,6 +269,8 @@ const Configuracao = () => {
         </div>
       </div>
     </div>
+    </div>
+
   );
 };
 

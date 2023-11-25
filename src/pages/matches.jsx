@@ -3,6 +3,7 @@ import Slider from "../components/Slider";
 import { useMatchData } from "../hooks/useMatchData";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles.css";
 
 const matches = () => {
      
@@ -16,7 +17,9 @@ const matches = () => {
         const fetchData = async () => {
           const response = await useMatchData();
           setData(response.data); // Atualize o estado com a resposta da API
-          console.log(response)
+          console.log("data: "+data)
+        console.log("Aproveitar requisição para fazer img")
+
         };
     
         fetchData(); // Chame a função fetchData
@@ -28,19 +31,20 @@ const matches = () => {
         } else {
             alert("Já curtiu tudo.")
         }
+        console.log(data);
+
     };
     const diminuir = () => {
         if(id!=0) {
             setID(id - 1);
         }
     };
-    
 
     return data!=undefined ? (
         
-    <div className="w-full h-screen  bg-amareloOcre">
-    <div id='central' className=" m-0 my-auto mx-auto pb-10 w-[500px] bg-cinzaBlack h-[100%]">
-            <div id='btnHeader' className="h-[50px] py-1 w-[500px] flex justify-center">
+    <div id="pagMatch" className="w-full h-screen  bg-amareloOcre overflow-hidden">
+        <div id='central' className=" m-0 my-auto mx-auto w-[100%]  sm:w-[500px] h-[100%] overflow-y-scroll overflow-x-hidden">
+            <div id='btnHeader' className="h-[70px] p-4 flex justify-center bg-amareloOcre">
                 <div className="absolute grid grid-cols-3">
                     <img src="../src/assets/Icones/chat.svg" alt="icone de chat" className='w-[65%] hover:w-[70%] active:w-[62%] transition ease-in-out'/>
                     <img onClick={() => navigate("/config")} src="../src/assets/Icones/icon configuracoes.svg" alt="icone de configurações" className='w-[65%] hover:w-[70%] active:w-[62%] transition ease-in-out'/>
@@ -48,40 +52,58 @@ const matches = () => {
                 </div>
             </div>
 
-            <div id='matchProfile'>
-                <Slider/>
-                <div id='SlideProfile' className="text-white absolute translate-y-[-180px] ">
+            <div id='matchProfile' className="h-[760px]">
+                <Slider />
+                <div id='SlideProfile' className="text-white  translate-y-[-180px] ">
                     <h3 className="text-2xl font-semibold pl-4">{data[id].name}</h3>
                     <h4 className="text-sm font-medium pl-4">{data[id].course}</h4>
                     <h4 className="text-sm font-medium pl-4">{data[id].campus}</h4>
                 </div>
-                <div id='btnProfile' className="h-[20px] py-1 w-[500px] flex justify-center">
-                    <div className=" absolute translate-y-[-100px] grid grid-cols-3">
+                <div id='btnProfile' className="  translate-y-[-180px]  flex justify-center">
+                    <div className="grid grid-cols-3">
                         <img onClick={diminuir} src="../src/assets/Icones/icon resetar.svg" alt="icone de voltar" className='w-[75%] hover:w-[80%] active:w-[70%] transition ease-in-out'/>
                         <img onClick={incrementar} src="../src/assets/Icones/icon not_match.svg" alt="icone de negar" className='w-[75%] hover:w-[80%] active:w-[70%] transition ease-in-out'/>
                         <img onClick={incrementar} src="../src/assets/Icones/icon match.svg" alt="icone de curtir" className='w-[75%] hover:w-[80%] active:w-[70%] transition ease-in-out'/>
                     </div>
-                </div>
-            </div>
 
+                </div>
+                <div id="transicao" className="  translate-y-[-182px]  relative bottom-0 h-[80px] z-20 ">
+
+            </div>
+     
+
+            </div>
         
-        {/* 
-            <div id="musicaProfile" className="flex p-5 justify-evenly">
-                <div id="imgMusica" className="rounded sm:w-[100px] sm:h-[100px] w-[80px] h-[80px] bg-gray m-0">
+            <div id="musicaProfile" className="relative flex sm:p-5 p-2 pt-5 justify-evenly bg-cinzaBlack">
+                <div id="imgMusica" className="rounded sm:w-[100px] sm:h-[100px] w-[80px] h-[80px]">
                     <img className="rounded" src="../src/assets/song-icon.svg" alt="icone de musica" />
                 </div>
-                <div id="txtMusica" className="self-center text-white m-0 ">
-                    <h4 className="text-lg sm:text-xl font-extrabold">Skyrim Theme Song</h4>
-                    <h4>Lindsey Stirling & Peter Hollens</h4>
+                <div id="txtMusica" className="self-center text-left  text-white m-0 ">
+                    <h4 className="text-lg sm:text-xl font-extrabold text-center ">Skyrim Theme Song</h4>
+                    <h4 className=" text-center">Lindsey Stirling & Peter Hollens</h4>
                 </div>
             </div>
-*/}
-            <div className="px-10 text-white m-0 flex  justify-evenly ">
-                <p>
-                <strong >Interesses: </strong> 
-                {data[id].interests.map(item => item.name).join(', ')}</p>
+
+
+            <div className="sm:px-10 px-5 py-5 text-white m-0 flex  justify-evenly text-justify	 bg-cinzaBlack ">
+                <p>📚 Estudante apaixonada de Psicologia na PUC.<br/>
+                    🎮 Adoro Skyrim, especialmente a trilha sonora <br/>
+                    que me faz viajar para outros mundos.<br/>
+                    📖 Amo perder-me nas páginas de um bom livro - minhas estantes estão cheias de histórias.<br/>
+                    🐾 Sou louca por animais - tenho um cachorro adorável e sonho em ter um gato também.<br/>
+                    👊🏼 Fã de UFC e esportes em geral - adoro a emoção do octógono!<br/>
+                    🍹 Uma noite perfeita inclui bons drinks e conversas envolventes.</p>
             </div>
 
+            <div className="sm:px-10 px-5 text-white m-0 flex bg-cinzaBlack">
+                <p>
+                {data[id].interests.map(item => ` #${item.name}`).join('  ')}
+                </p>
+            </div>
+
+            <div className="sm:px-10 px-5 py-5 text-white m-0 flex  bg-cinzaBlack	 ">
+             <p><strong>Instagram: </strong>{data[id].instagram}</p> 
+            </div>
         </div>
 
     </div>

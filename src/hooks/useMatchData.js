@@ -28,5 +28,6 @@ export function useMatchData () {
         error: error.message, 
       };
     });
+    console.log(resposta)
     return resposta;
 }
