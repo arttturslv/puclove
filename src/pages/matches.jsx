@@ -1,6 +1,5 @@
 import { } from "react-router-dom";
 import Slider from "../components/Slider";
-import { useMatchData } from "../hooks/useMatchData";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles.css";
@@ -13,18 +12,13 @@ const matches = () => {
     const [id, setID] = useState(1);
     const [data, setData] = useState(undefined); // Estado para controlar o carregamento
 
-    useEffect(() => {
-        const fetchData = async () => {
-          const response = await useMatchData();
-          setData(response.data); // Atualize o estado com a resposta da API
-          console.log("data: "+data)
-        console.log("Aproveitar requisição para fazer img")
 
-        };
-    
-        fetchData(); // Chame a função fetchData
+    useEffect(() => {
+        console.log("Data armazenada.")
+        setData(JSON.parse(sessionStorage.getItem("matches")));
       }, []);
-    
+
+
     const incrementar = () => {
         if(id+1!=data.length) {
             setID(id + 1);
@@ -38,10 +32,10 @@ const matches = () => {
         if(id!=0) {
             setID(id - 1);
         }
+        console.log(data[id].image)
     };
 
     return data!=undefined ? (
-        
     <div id="pagMatch" className="w-full h-screen  bg-amareloOcre overflow-hidden">
         <div id='central' className=" m-0 my-auto mx-auto w-[100%]  sm:w-[500px] h-[100%] overflow-y-scroll overflow-x-hidden">
             <div id='btnHeader' className="h-[70px] p-4 flex justify-center bg-amareloOcre">
@@ -53,7 +47,7 @@ const matches = () => {
             </div>
 
             <div id='matchProfile' className="h-[760px]">
-                <Slider />
+                <Slider image={data[id].image}/>
                 <div id='SlideProfile' className="text-white  translate-y-[-180px] ">
                     <h3 className="text-2xl font-semibold pl-4">{data[id].name}</h3>
                     <h4 className="text-sm font-medium pl-4">{data[id].course}</h4>

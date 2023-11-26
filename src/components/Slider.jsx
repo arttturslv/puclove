@@ -1,15 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 
-function Slider() {
-    const slides = [
-        {
-            url: 'https://upload.wikimedia.org/wikipedia/commons/b/b4/Entradapucminas.jpg'
-        },
-        {
-            url: 'https://conexao.pucminas.br/wp-content/uploads/2023/06/WhatsApp-Image-2023-06-23-at-11.53.44.jpeg'
-        }
-    ];
+function Slider(image) {
+    console.log((image.image[0].imagePath).replace("\\\\","/"));
+    const slides = image.image;
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -33,8 +27,8 @@ function Slider() {
         <div className='h-[750px] w-full m-auto py-1 relative group'>
 
 
-            <div style={{ backgroundImage: `url(${slides[currentIndex].url})` }} className='w-full h-full rounded-2xl bg-center bg-cover - duration-500'>
-
+            <div className='w-full h-full rounded-2xl bg-center bg-cover - duration-500'>
+            <img src={slides[currentIndex].imagePath} alt=""/>
                 {/*dots index*/}
                 <div className='flex justify-around py-3'>
                     {slides.map((slide, slideIndex) => (

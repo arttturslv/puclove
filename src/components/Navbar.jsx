@@ -3,25 +3,21 @@ import menuOpen from '../assets/Icones/icon menuClose.svg'
 import menuClose from '../assets/Icones/icon menuOpen.svg'
 import { useState } from 'react'
 import { Link as LinkExternal } from 'react-router-dom'
-import { Link } from 'react-scroll'
 import { useNavigate } from "react-router-dom";
 
 
 const Navbar = () => {
-    const token = localStorage.getItem("authToken");
+    const token = sessionStorage.getItem("authToken");
 
     let [isOpen, setisOpen] = useState(false)
-
-
-
-    console.log(token);
 
     const navigate = useNavigate();
 
     function logout() {
-        localStorage.removeItem("authToken");
+        sessionStorage.removeItem("authToken");
+        sessionStorage.removeItem("matches");
         alert("Saindo da conta.")
-        location.reload();
+        navigate("/");
     }
 
     return (
@@ -69,7 +65,7 @@ const Navbar = () => {
                             </div>
                             :
                             <div>
-                            <button onClick={() => navigate("/matches")} className='btn font-semibold  hover:md:text-amareloOcre hover:text-black bg-amareloOcre text-vermelhoSanguino md:text-vermelhoSanguino md:bg-white rounded-full px-3 py-1 md:static '>Match</button>
+                            <button onClick={() => navigate("/carregamento")} className='btn font-semibold  hover:md:text-amareloOcre hover:text-black bg-amareloOcre text-vermelhoSanguino md:text-vermelhoSanguino md:bg-white rounded-full px-3 py-1 md:static '>Match</button>
                             <button onClick={logout} className='btn font-semibold  hover:text-white rounded-full px-3  md:static '>Logout</button>
                             </div>
                             }

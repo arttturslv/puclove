@@ -8,9 +8,9 @@ const loginEndpoint = "http://localhost:8080/auth/login";
 
 const Login = () => {
 
-  if(localStorage.getItem("authToken")) { //evitar de entrar na pagina de login, com usuarios logados
+  if(sessionStorage.getItem("authToken")) { //evitar de entrar na pagina de login, com usuarios logados
     setTimeout(() => {
-      navigate("/matches");
+      navigate("/carregamento");
     }, 0);
   }
 
@@ -41,13 +41,13 @@ const Login = () => {
         const userData = await response.json();
         
         console.log("Token armazenado.")
-        localStorage.setItem("authToken", userData.token);
+        sessionStorage.setItem("authToken", userData.token);
 
         setUser(userData);
         window.alert("Login autenticado");
 
         setTimeout(() => {
-          navigate("/matches");
+          navigate("/carregamento");
         }, 2000);
       } else {
         console.error("Falha no login");
