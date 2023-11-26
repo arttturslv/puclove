@@ -7,6 +7,7 @@ import api from '../api/axiosConfig';
 import Interesses from '../components/Interesses';
 import { useNavigate } from "react-router-dom";
 import Navbar from '../components/Navbar';
+import {motion} from 'framer-motion';
 
 const RegistrationForm = () => {
   const {
@@ -80,7 +81,12 @@ const RegistrationForm = () => {
   const navigate = useNavigate();
 
   return (
-    <div className=" bg-cover w-full h-full bg-[url('../src\assets\background-linhas.svg')]">
+    <motion.div 
+      initial = {{opacity:0 }}
+      transition={{duration:1}}
+      animate = {{opacity:1 }}
+      exit={{opacity:0}}
+    className=" bg-cover w-full h-full bg-[url('../src\assets\background-linhas.svg')]">
     <Navbar />
     <form className="cadastro-form">
     <div className="container-cadastro ">
@@ -176,7 +182,7 @@ const RegistrationForm = () => {
       </div>
     </div>
     </form>
-    </div>
+    </motion.div>
 
     )};
 

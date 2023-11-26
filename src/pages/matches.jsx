@@ -3,6 +3,7 @@ import Slider from "../components/Slider";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles.css";
+import {motion} from 'framer-motion';
 
 const matches = () => {
      
@@ -35,8 +36,41 @@ const matches = () => {
         console.log(data[id].image)
     };
 
+    function calculaIdade(dataNasc) {
+         let nascimento = dataNasc.split('-');
+
+         const dataAtual = new Date();
+         const anoAtual = dataAtual.getFullYear(); 
+         const mesAtual = dataAtual.getMonth();         
+        
+         let mes =  parseInt(nascimento[0]);
+         let ano =  parseInt(nascimento[0]);
+
+         if(mes < mesAtual) {
+            return (anoAtual-ano)-1;
+         } else {
+            return anoAtual-ano;
+         }
+    }
+
+    function decideEmoji(intent) {
+
+        if(intent=="FRIENDSHIP") {
+            return " amizades 😁"
+        } else if (intent=="SERIOUS_RELATIONSHIP") {
+            return " um relacionamento sério 🥰"
+        } else {
+            return " algo casual 🥰"
+        }
+    }
+
     return data!=undefined ? (
-    <div id="pagMatch" className="w-full h-screen  bg-amareloOcre overflow-hidden">
+        <motion.div 
+            initial = {{opacity:0 }}
+            transition={{duration:1}}
+            animate = {{opacity:1 }}
+            exit={{opacity:0}}
+        id="pagMatch" className="w-full h-screen  bg-amareloOcre overflow-hidden">
         <div id='central' className=" m-0 my-auto mx-auto w-[100%]  sm:w-[500px] h-[100%] overflow-y-scroll overflow-x-hidden">
             <div id='btnHeader' className="h-[70px] p-4 flex justify-center bg-amareloOcre">
                 <div className="absolute grid grid-cols-3">
@@ -49,7 +83,7 @@ const matches = () => {
             <div id='matchProfile' className="h-[760px]">
                 <Slider image={data[id].image}/>
                 <div id='SlideProfile' className="text-white  translate-y-[-180px] ">
-                    <h3 className="text-2xl font-semibold pl-4">{data[id].name}</h3>
+                    <h3 className="text-2xl font-semibold pl-4">{data[id].name} - {calculaIdade(data[id].birthDate)}</h3>
                     <h4 className="text-sm font-medium pl-4">{data[id].course}</h4>
                     <h4 className="text-sm font-medium pl-4">{data[id].campus}</h4>
                 </div>
@@ -96,11 +130,15 @@ const matches = () => {
             </div>
 
             <div className="sm:px-10 px-5 py-5 text-white m-0 flex  bg-cinzaBlack	 ">
-             <p><strong>Instagram: </strong>{data[id].instagram}</p> 
+             <p><strong>Instagram: </strong>{data[id].instagram}</p>
+            </div>
+
+            <div className="sm:px-10 px-5 pt-0 py-5 text-white m-0 flex  bg-cinzaBlack	 ">
+             <p><strong>Procurando por: </strong>{decideEmoji(data[id].intention)}</p> 
             </div>
         </div>
 
-    </div>
+        </motion.div>
     ) : (     <div className="flex justify-center items-center h-screen bg-gray-100">
     <div className=" animate-spin">
         <svg className="stroke-blue-50 stroke-4 stroke-dash-150 stroke-dashoffset-150 animate-dash" xmlns="http://www.w3.org/2000/svg" width="93" height="93" viewBox="0 0 93 93" fill="none">
@@ -109,7 +147,6 @@ const matches = () => {
         <path d="M82.9482 36.1675C81.7355 28.3306 80.7544 21.1337 76.562 16.4011C72.3431 11.6384 66.0024 7.6646 59.9437 5.72171C52.288 3.26668 41.0991 3.43126 33.8121 6.25285C31.5112 7.14379 29.1558 8.04023 27.0318 9.29584C18.5563 14.3062 12.319 29.9324 12.319 36.1674" stroke="#AD5E5E" strokeWidth="8" strokeLinecap="round"/>
         <path d="M28.4629 28.0955C25.4671 28.3764 20.8246 33.4441 17.3777 35.8198C16.157 36.6612 14.8018 37.3266 13.3949 37.7943C11.4799 38.4308 8.78699 38.6696 7.98444 35.4511C6.68608 30.2444 5.58436 24.919 4.00193 20.0236" stroke="#AD5E5E" strokeWidth="8" strokeLinecap="round"/>
         </svg>
-
     </div>
 </div>)
 }

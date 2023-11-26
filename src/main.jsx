@@ -14,6 +14,7 @@ import Matches from './pages/matches'
 import NotFound from './pages/notFound'
 import Configuracao from "./pages/config";
 import Carregamento from './pages/carregamento'
+import { AnimatePresence } from 'framer-motion'
 
 //CRIANDO ARRAY DE ROTAS
 const router = createBrowserRouter([
@@ -58,14 +59,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AnimatePresence mode='wait'>
+      <RouterProvider router={router} />
+    </AnimatePresence>
   </React.StrictMode>,
 )
-
-/* 
-  <Route path="/login" Component={Login}/>
-  <Route path="/cadastro" Component={Cadastro}/>
-  <Route path="/matches" Component={Matches}/>
-  <Route path="/matches/user/212321" Component={Matches}/>
-  <Route path="/configuracoes" Component={Settings}/>
-*/

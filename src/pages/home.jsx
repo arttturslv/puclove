@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
+import {motion} from 'framer-motion';
 
 const alex = () => {
     window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley');
@@ -22,7 +23,12 @@ const tulio = () => {
 const Home = () => {
 
     return (
-        <div className="container-home m-0 bg-cover w-full h-full bg-[url('../src\assets\background-linhas.svg')]">
+        <motion.div 
+            initial = {{opacity:0 }}
+            transition={{duration:1}}
+            animate = {{opacity:1 }}
+            exit={{opacity:0}}
+         className="container-home m-0 bg-cover w-full h-full bg-[url('../src\assets\background-linhas.svg')]">
             <Navbar />
             <div className="max-w-7xl m-0 my-auto mx-auto  logo-nome py-72 h-full grid grid-cols-1 content-center">
                 <img className='w-4/5 m-0 my-auto mx-auto md:w-3/5 lg:w-3/6' src="../src/assets/Logo frase-svg.svg" alt="PUCLOVE - Conectando corações, impulsionando comunidades" />
@@ -90,7 +96,7 @@ const Home = () => {
                 </ul>
             </div>
 
-        </div>
+        </motion.div>
 
     )
 };

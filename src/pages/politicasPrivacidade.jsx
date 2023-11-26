@@ -1,11 +1,16 @@
 import React from 'react';
 import { Link as LinkExternal } from 'react-router-dom'
+import {motion} from 'framer-motion';
 
 const Home = () => {
 
     return (
-        <div className="w-screen h-screen flex justify-center overflow-hidden text-white bg-cover bg-[url('../src/assets/Background-svg.svg')]">
-
+        <motion.div 
+            initial = {{opacity:0 }}
+            transition={{duration:1}}
+            animate = {{opacity:1 }}
+            exit={{opacity:0}}
+            className="w-screen h-screen flex justify-center overflow-hidden text-white bg-cover bg-[url('../src/assets/Background-svg.svg')]">
             <div className='w-[90%] max-h-[90%] rounded-xl relative top-[5%] bg-cinzaBlack py-6 pb-24 px-5 md:px-12'>
                 <div className='flex pb-2 md:pb-6 '>
                     <LinkExternal className='w-100% m-0 relative left-[80%] md:left-[90%]' to="/">
@@ -47,7 +52,7 @@ const Home = () => {
 
             </div>
 
-        </div>
+            </motion.div>
 
     )
 };

@@ -1,7 +1,7 @@
 import { useMatchData } from "../hooks/useMatchData";
 import React, { useState, useEffect } from "react";
-import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import {motion} from 'framer-motion';
 
 const Carregamento = () => {
     const navigate = useNavigate();
@@ -76,13 +76,18 @@ const Carregamento = () => {
     
 
     return (
-        <div id='as' className='w-full h-[100vh] p-20 bg-vermelhoSanguino' >
+        <motion.div 
+        initial = {{opacity:0 }}
+        transition={{duration:2}}
+        animate = {{opacity:1 }}
+        exit={{opacity:0}} 
+        id='as' className='w-full h-[100vh] p-20 bg-vermelhoSanguino' >
             <div>
                 <img width="400px" className='absolute right-0 bottom-0' src="src\assets\cupido1.webp" alt="" />
                 <p id="txt" className='text-center text-5xl font-extrabold 	'></p>
             </div>
 
-        </div>
+        </motion.div>
     );
 }
 

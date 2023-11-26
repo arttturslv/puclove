@@ -24,9 +24,8 @@ function Slider(image) {
     }
 
     return (
-        <div className='h-[750px] w-full m-auto py-1 relative group'>
-
-
+        <div 
+        className='h-[750px] w-full m-auto py-1 relative group'>
             <div className='w-full h-full rounded-2xl bg-center bg-cover - duration-500'>
             <img src={slides[currentIndex].imagePath} alt=""/>
                 {/*dots index*/}
@@ -52,8 +51,6 @@ function Slider(image) {
             <div onClick={nextSlide} className=' hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-8 text-2xl cursor-pointer py-32 pl-20'>
                 <svg width="10" height="28" viewBox="0 0 25 70" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.00043 2C6.41252 10.8242 13.3612 23.3676 21.5437 29.1434C28.3735 33.9645 5.57991 62.0635 3.22188 67.9586" stroke="#FAEFEC" strokeWidth="4" strokeLinecap="round" /></svg>
             </div>
-
-
         </div>
     )
 };

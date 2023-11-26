@@ -5,6 +5,7 @@ import voltar from "../assets/Icones/icon voltar.svg";
 import work_mode from "../assets/Icones/icon workmode.svg";
 import "../stylesConfig.css";
 import Navbar from "../components/Navbar";
+import {motion} from 'framer-motion';
 
 const Configuracao = () => {
 
@@ -111,9 +112,13 @@ const Configuracao = () => {
   };
 
   return (
-    <div className=" bg-cover w-full h-full bg-[url('../src\assets\background-linhas.svg')]">
-          <Navbar />
-
+    <motion.div 
+      initial = {{opacity:0 }}
+      transition={{duration:1}}
+      animate = {{opacity:1 }}
+      exit={{opacity:0}}
+    className=" bg-cover w-full h-full bg-[url('../src\assets\background-linhas.svg')]">
+    <Navbar />
     <div className="container-config">
 
       <div className="wrap-config">
@@ -269,7 +274,7 @@ const Configuracao = () => {
         </div>
       </div>
     </div>
-    </div>
+    </motion.div>
 
   );
 };
