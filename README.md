@@ -1,17 +1,27 @@
-# Front-end do PUCLove
+# PUCLove
+
+### Informação complementar
+
+Inicialmente este repositorio era apenas para o front-end, mas foi necessário mudar o todo o projeto (front e back) para o [repositorio da PUC](https://github.com/ICEI-PUC-Minas-PSGADS-TI/TIAPLI-2023-2-PUCLove). <br>
+Entrentanto, o semestre chegou ao fim e mesmo após entregar todas as funcionalidades para a disciplina, não foi possivel terminar todas as funcionalidades do nosso projeto. <br>
+Portanto, esse repositorio será atualizado (se já não tiver sido) para que abrigue o front e o back para terminar e melhorar a qualidade do código. <br>
+
+**Integrantes que desejaram continuar o projeto:**
+- Artur Marcos 🤨
+- Davi Ribeiro 👍
 
 ## Sobre o Projeto
 
-O PUCLove é um projeto apaixonante criado por um time dedicado de desenvolvedores que acredita que as conexões entre estudantes podem ser transformadoras. Com a visão de proporcionar uma experiência interativa excepcional, utilizamos as tecnologias de ponta do React e Java SpringBoot para criar uma plataforma intuitiva e dinâmica.
-**Integrantes**
+O PUCLove é um projeto criado por um time dedicado de desenvolvedores que acredita que as conexões entre estudantes podem ser transformadoras. Com a visão de proporcionar uma experiência interativa excepcional, utilizamos as tecnologias de ponta do React e Java SpringBoot para criar uma plataforma intuitiva e dinâmica para possibilitar encontro entre estudantes, seja para amizades ou relacionamentos.
+
+**Integrantes iniciais**
 - Alex Gonçalves
 - Anna Carla
 - Artur Marcos
 - Davi Ribeiro
 - Tulio Barros
 
-
-## Descrição do Repositório
+## Descrição do front-end
 
 Este repositório contém os arquivos necessários para abrir o projeto, incluindo os arquivos source e os assets de imagens.
 
