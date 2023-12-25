@@ -1,6 +1,9 @@
 # PUCLOVE
 ![puclove](https://github.com/arttturslv/puclove/assets/115251355/591aee29-b36f-427e-b616-35b320c1ccf3)
 
+<h3>Status: </h3> 
+<img width="110px" src="https://i.imgur.com/yUlXqQK.png">
+
 ### Informação complementar
 
 Inicialmente este repositorio era apenas para o front-end, mas foi necessário mudar o todo o projeto (front e back) para o [repositorio da PUC](https://github.com/ICEI-PUC-Minas-PSGADS-TI/TIAPLI-2023-2-PUCLove). <br>
