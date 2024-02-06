@@ -6,9 +6,9 @@
 
 ### Informação complementar
 
-Inicialmente este repositorio era apenas para o front-end, mas foi necessário mudar o todo o projeto (front e back) para o [repositorio da PUC](https://github.com/ICEI-PUC-Minas-PSGADS-TI/TIAPLI-2023-2-PUCLove). <br>
-Entrentanto, o semestre chegou ao fim e mesmo após entregar todas as funcionalidades para a disciplina, não foi possivel terminar todas as funcionalidades do nosso projeto. <br>
-Portanto, esse repositorio será atualizado (se já não tiver sido) para que abrigue o front e o back para terminar e melhorar a qualidade do código. <br>
+Inicialmente este repositório era apenas para o front-end, mas se fez necessário deslocar todo o projeto (front e back) para o [repositório da PUC](https://github.com/ICEI-PUC-Minas-PSGADS-TI/TIAPLI-2023-2-PUCLove). <br>
+Entretanto, o semestre chegou ao fim e mesmo após entregar todas as funcionalidades para cumprir a disciplina, não damos como concluído o nosso projeto para além da mesma. <br>
+Portanto, esse repositório será atualizado de forma a hospedar o projeto completo, para dar continuidade ao mesmo e trazer melhorias ao código. <br>
 
 **Integrantes que desejaram continuar o projeto:**
 - Artur Marcos 🤨
@@ -16,7 +16,7 @@ Portanto, esse repositorio será atualizado (se já não tiver sido) para que ab
 
 ## Sobre o Projeto
 
-O PUCLove é um projeto criado por um time dedicado de desenvolvedores que acredita que as conexões entre estudantes podem ser transformadoras. Com a visão de proporcionar uma experiência interativa excepcional, utilizamos as tecnologias de ponta do React e Java SpringBoot para criar uma plataforma intuitiva e dinâmica para possibilitar encontro entre estudantes, seja para amizades ou relacionamentos.
+O PUCLove é um projeto criado por um time dedicado de desenvolvedores que acredita que as conexões entre estudantes podem ser transformadoras. Com a visão de proporcionar uma experiência interativa excepcional, utilizamos as tecnologias de ponta do React e Java utilizando o framework Spring Boot para criar uma plataforma intuitiva e dinâmica para possibilitar encontro entre estudantes, seja para amizades ou relacionamentos.
 
 **Integrantes iniciais**
 - Alex Gonçalves
