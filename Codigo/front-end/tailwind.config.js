@@ -4,7 +4,12 @@ export default {
   "./index.html",
   "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
+        '4xl': '0 5px 10px 0 rgba(0, 0, 0, 0.2)',
+      },
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',

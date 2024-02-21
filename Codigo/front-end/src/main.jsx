@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 //IMPORTANDO PAGINAS
 import Home from './pages/home'
 import Login from './pages/login'
+import LoginTail from './pages/loginTail'
 import Cadastro from './pages/cadastro'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import Matches from './pages/matches'
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login/>
+  },
+  {
+    path: "/loginTail",
+    element: <LoginTail/>
   },
   {
     path: "/cadastro",
