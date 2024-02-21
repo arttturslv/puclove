@@ -8,9 +8,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/home'
 import Login from './pages/login'
 import Cadastro from './pages/cadastro'
-import PoliticaPrivacidade from './pages/politicas-privacidade'
+import PrivacyPolicy from './pages/PrivacyPolicy'
 import Matches from './pages/matches'
-import NaoEncontrado from './pages/nao-encontrado'
+import NotFound from './pages/NotFound'
 import Configuracao from "./pages/config";
 import Carregamento from './pages/carregamento'
 import { AnimatePresence } from 'framer-motion'
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/privacidade",
-    element: <PoliticaPrivacidade/>
+    element: <PrivacyPolicy/>
   },
   {
     path: "/matches",
@@ -39,7 +39,7 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <NaoEncontrado/>
+    element: <NotFound/>
   },
   {
     path: "/config",

@@ -2,7 +2,7 @@ import { } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {motion} from 'framer-motion';
 
-const NaoEncontrado = () => {
+const NotFound = () => {
     const navigate = useNavigate();
 
     return (
@@ -26,4 +26,4 @@ const NaoEncontrado = () => {
         </motion.div>
     )
 }
-export default NaoEncontrado;
+export default NotFound;

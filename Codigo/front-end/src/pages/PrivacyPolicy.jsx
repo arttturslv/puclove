@@ -2,7 +2,7 @@ import React from 'react';
 import { Link as LinkExternal } from 'react-router-dom'
 import {motion} from 'framer-motion';
 
-const PoliticaPrivacidade = () => {
+const PrivacyPolicy = () => {
 
     return (
         <motion.div 
@@ -58,4 +58,4 @@ const PoliticaPrivacidade = () => {
 };
 
 
-export default PoliticaPrivacidade;
+export default PrivacyPolicy;
