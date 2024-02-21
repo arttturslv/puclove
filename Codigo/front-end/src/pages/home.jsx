@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import {motion} from 'framer-motion';
+import Personagens from '../components/Personagens';
 
 const Home = () => {
     return (
@@ -26,49 +27,46 @@ const Home = () => {
                 <p className='sm:text-base md:text-base lg:text-lg '>Junte-se a nós hoje mesmo e faça parte da comunidade PucLove. Conecte-se, compartilhe e, quem sabe, encontre o amor entre as salas de aula e os corredores da PUC!</p>
             </div>
 
-            <div className="m-0 my-auto mx-auto  max-w-7xl caricaturas py-10 flex justify-between w-5/6 flex-wrap">
-                <div onClick={()=> window.open('https://github.com/ArexDiniz')} className="alex cursor-zoom-in  flex-col text-center">
-                    <div className='relative'>
-                        <img src="../src/assets/Caricaturas/estaticas/alexy.svg" alt="Alex, um estudante" className='relative z-[90] transition-opacity md:hover:opacity-0' />
-                        <img src="../src/assets/Caricaturas/animadas/alex-gif.gif" alt="Alex, um estudante" className='absolute z-[0] top-0 ' />
-                    </div>
-                    <h5 className='font-semibold text-lg'>Alex Gonçalves</h5>
-                    <p>Dev. front-end<br />ㅤ</p>
+            <div className="m-0 my-auto mx-auto max-w-7xl caricaturas py-10 flex items-start justify-between w-5/6 flex-wrap">
 
-                </div>
-                <div onClick={()=> window.open('https://github.com/Anna-Carla')} className="anna hover:scale-105 cursor-zoom-in	 flex-col text-center">
-                    <div className='relative'>
-                        <img src="../src/assets/Caricaturas/estaticas/ano.svg" alt="Anna, uma estudante" className='relative z-[90] transition-opacity md:hover:opacity-0' />
-                        <img src="../src/assets/Caricaturas/animadas/anna-gif.gif" alt="Anna, uma estudante" className='absolute z-[0] top-0 ' />
-                    </div>
-                    <h5 className='font-semibold text-lg'>Anna Carla</h5>
-                    <p>UX-UI<br />Dev. front-end</p>
-                </div>
-                <div onClick={()=> window.open('https://github.com/arttturslv')} className="artur hover:scale-105  cursor-zoom-in	 flex-col text-center">
-                    <div className='relative'>
-                        <img src="../src/assets/Caricaturas/estaticas/arturo.svg" alt="Artur, um estudante" className='relative z-[90] transition-opacity md:hover:opacity-0' />
-                        <img src="../src/assets/Caricaturas/animadas/artur-gif.gif" alt="Artur, um estudante" className='absolute z-[0] top-0 ' />
+                <Personagens 
+                    nome="Alex Gonçalves"
+                    perfilUrl="https://github.com/ArexDiniz"
+                    imgUrl="../src/assets/Caricaturas/estaticas/alexy.svg"
+                    gifUrl="../src/assets/Caricaturas/animadas/alex-gif.gif"
+                    funcao="Dev.front-end"
+                />
+                <Personagens 
+                    nome="Anna Carla"
+                    perfilUrl="https://github.com/Anna-Carla"
+                    imgUrl="../src/assets/Caricaturas/estaticas/ano.svg"
+                    gifUrl="../src/assets/Caricaturas/animadas/anna-gif.gif"
+                    funcao="UX-UI"
+                    funcao1="Dev.front-end"
+                />
+                <Personagens 
+                    nome="Artur Marcos"
+                    perfilUrl="https://github.com/arttturslv"
+                    imgUrl="../src/assets/Caricaturas/estaticas/arturo.svg"
+                    gifUrl="../src/assets/Caricaturas/animadas/artur-gif.gif"
+                    funcao="UX-UI"
+                    funcao1="Dev.front-end"
+                />
+                <Personagens 
+                    nome="Davi Ribeiro"
+                    perfilUrl="https://github.com/dxvinci"
+                    imgUrl="../src/assets/Caricaturas/estaticas/david.svg"
+                    gifUrl="../src/assets/Caricaturas/animadas/davi-gif.gif"
+                    funcao="Dev.back-end"
+                />
+                <Personagens 
+                    nome="Tulio Barros"
+                    perfilUrl="https://github.com/micder1"
+                    imgUrl="../src/assets/Caricaturas/estaticas/tuio.svg"
+                    gifUrl="../src/assets/Caricaturas/animadas/tulio-gif.gif"
+                    funcao="Dev.back-end"
+                 />
 
-                    </div>
-                    <h5 className='font-semibold text-lg'>Artur Marcos</h5>
-                    <p>UX-UI<br />Dev. front-end</p>
-                </div>
-                <div onClick={()=> window.open('https://github.com/dxvinci')} className="davi hover:scale-105  cursor-zoom-in	 flex-col text-center">
-                    <div className='relative'>
-                        <img src="../src/assets/Caricaturas/estaticas/david.svg" alt="Davi, um estudante" className='relative z-[90] transition-opacity md:hover:opacity-0' />
-                        <img src="../src/assets/Caricaturas/animadas/davi-gif.gif" alt="Davi, um estudante" className='absolute z-[0] top-0 ' />
-                    </div>
-                    <h5 className='font-semibold text-lg'>Davi Ribeiro</h5>
-                    <p>Dev. back-end<br />ㅤ</p>
-                </div>
-                <div onClick={()=> window.open('https://github.com/micder1')} className="tulio hover:scale-105  cursor-zoom-in	  flex-col text-center">
-                    <div className='relative'>
-                        <img src="../src/assets/Caricaturas/estaticas/tuio.svg" alt="Tulio, um estudante" className='relative z-[90] transition-opacity md:hover:opacity-0' />
-                        <img src="../src/assets/Caricaturas/animadas/tulio-gif.gif" alt="Tulio, um estudante" className='absolute z-[0] top-0 ' />
-                    </div>
-                    <h5 className='font-semibold text-lg'>Tulio Barros</h5>
-                    <p>Dev. back-end<br />ㅤ</p>
-                </div>
             </div>
 
             <div id="regras" className="footer w-full py-5 px-10  bg-cinzaBlack flex justify-center items-center" >
