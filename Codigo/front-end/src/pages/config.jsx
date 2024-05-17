@@ -1,14 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import voltar from "../assets/Icones/icon voltar.svg";
-import work_mode from "../assets/Icones/icon workmode.svg";
-import imgwork_mode from "../assets/sga_workmode.png";
 import "../stylesConfig.css";
 import { motion } from "framer-motion";
 import Modal from "../components/Modal";
 import Interesses from "../components/Interesses";
 import api from "../api/axiosConfig";
+
+import goBack from "../assets/Icons/revert.svg";
+import workMode from "../assets/Icons/excel.svg";
+import bgSGA from "../assets/Background/bg_sga.png";
+
 
 const Configuracao = () => {
   const navigate = useNavigate();
@@ -375,7 +377,7 @@ const Configuracao = () => {
       transition={{ duration: 1 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className=" bg-cover w-full h-full bg-[url('../src\assets\background-linhas.svg')]"
+      className=" bg-cover w-full h-full bg-[url('../src\assets\Background\bg_lines.svg')]"
     >
       {statusLogout && (
         <Modal
@@ -400,7 +402,7 @@ const Configuracao = () => {
         onClick={imgWorkMode}
         id="img_work"
         className="h-[100vh] cursor-pointer hidden"
-        src={imgwork_mode}
+        src={bgSGA}
       ></img>
 
       <div iv id="config_page" className="container-config">
@@ -413,7 +415,7 @@ const Configuracao = () => {
 
           <div className="voltar" onClick={() => navigate("/matches")}>
             <a>
-              <img className="img_return" src={voltar} alt="voltar" />
+              <img className="img_return" src={goBack} alt="voltar" />
             </a>
             <button className="text_return">Voltar</button>
           </div>
@@ -440,7 +442,7 @@ const Configuracao = () => {
                     Logout
                   </button>
                   <a onClick={logout}>
-                    <img className="img_exit" src={voltar} alt="voltar" />
+                    <img className="img_exit" src={goBack} alt="voltar" />
                   </a>
                 </div>
 
@@ -449,7 +451,7 @@ const Configuracao = () => {
                   <a>
                     <img
                       className="img_workmode"
-                      src={work_mode}
+                      src={workMode}
                       alt="modo de trabalho"
                     />
                   </a>

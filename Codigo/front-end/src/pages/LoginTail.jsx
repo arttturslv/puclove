@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import logo from "../assets/logo redonda-svg.svg";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import {motion} from 'framer-motion';
+
+import logo from "../assets/favicon.svg";
 
 const LoginTail = () => {
 
@@ -64,7 +65,7 @@ const LoginTail = () => {
       transition={{duration:1}}
       animate = {{opacity:1 }}
       exit={{opacity:0}} 
-    className=" bg-cover w-full h-full bg-[url('../src\assets\background-linhas.svg')]">
+    className=" bg-cover w-full h-full bg-[url('../src\assets\Background\bg_lines.svg')]">
     <Navbar />
     <div className=" w-[100%] h-[93vh] flex justify-center items-center p-[10px] ">
       <div className="w-[400px] h-[430px] bg-[#333333] rounded-xl shadow-4xl overflow-hidden py-[60px] px-[20px] flex flex-col justify-center items-center">

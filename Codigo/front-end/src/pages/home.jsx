@@ -3,6 +3,10 @@ import Navbar from '../components/Navbar';
 import {motion} from 'framer-motion';
 import Personagens from '../components/Personagens';
 
+import bgLines from '../assets/Background/bg_lines.svg';
+import phrase from '../assets/phrase.svg';
+
+
 const Home = () => {
     return (
         <motion.div 
@@ -10,12 +14,12 @@ const Home = () => {
             transition={{duration:1}}
             animate = {{opacity:1 }}
             exit={{opacity:0}}
-         className="container-home m-0 bg-cover w-full h-full bg-[url('../src\assets\background-linhas.svg')]">
+            className="container-home m-0 bg-cover w-full h-full bg-[url('../src\assets\Background\bg_lines.svg')]">
 
            <Navbar />
 
             <div className="max-w-7xl m-0 my-auto mx-auto  logo-nome py-72 h-full grid grid-cols-1 content-center">
-                <img className='w-4/5 m-0 my-auto mx-auto md:w-3/5 lg:w-3/6' src="../src/assets/Logo frase-svg.svg" alt="PUCLOVE - Conectando corações, impulsionando comunidades" />
+                <img className='w-4/5 m-0 my-auto mx-auto md:w-3/5 lg:w-3/6' src={phrase} alt="PUCLOVE - Conectando corações, impulsionando comunidades" />
 
             </div>
 
@@ -31,39 +35,39 @@ const Home = () => {
 
                 <Personagens 
                     nome="Alex Gonçalves"
-                    perfilUrl="https://github.com/ArexDiniz"
-                    imgUrl="../src/assets/Caricaturas/estaticas/alexy.svg"
-                    gifUrl="../src/assets/Caricaturas/animadas/alex-gif.gif"
+                    perfilURL="https://github.com/ArexDiniz"
+                    imgURL="../src/assets/Caricaturas/estaticas/alex.svg"
+                    gifURL="../src/assets/Caricaturas/animadas/alex.gif"
                     funcao="Dev.front-end"
                 />
                 <Personagens 
                     nome="Anna Carla"
-                    perfilUrl="https://github.com/Anna-Carla"
-                    imgUrl="../src/assets/Caricaturas/estaticas/ano.svg"
-                    gifUrl="../src/assets/Caricaturas/animadas/anna-gif.gif"
+                    perfilURL="https://github.com/Anna-Carla"
+                    imgURL="../src/assets/Caricaturas/estaticas/anna.svg"
+                    gifURL="../src/assets/Caricaturas/animadas/anna.gif"
                     funcao="UX-UI"
                     funcao1="Dev.front-end"
                 />
                 <Personagens 
                     nome="Artur Marcos"
-                    perfilUrl="https://github.com/arttturslv"
-                    imgUrl="../src/assets/Caricaturas/estaticas/arturo.svg"
-                    gifUrl="../src/assets/Caricaturas/animadas/artur-gif.gif"
+                    perfilURL="https://github.com/arttturslv"
+                    imgURL="../src/assets/Caricaturas/estaticas/artur.svg"
+                    gifURL="../src/assets/Caricaturas/animadas/artur.gif"
                     funcao="UX-UI"
                     funcao1="Dev.front-end"
                 />
                 <Personagens 
                     nome="Davi Ribeiro"
-                    perfilUrl="https://github.com/dxvinci"
-                    imgUrl="../src/assets/Caricaturas/estaticas/david.svg"
-                    gifUrl="../src/assets/Caricaturas/animadas/davi-gif.gif"
+                    perfilURL="https://github.com/dxvinci"
+                    imgURL="../src/assets/Caricaturas/estaticas/davi.svg"
+                    gifURL="../src/assets/Caricaturas/animadas/davi.gif"
                     funcao="Dev.back-end"
                 />
                 <Personagens 
                     nome="Tulio Barros"
-                    perfilUrl="https://github.com/micder1"
-                    imgUrl="../src/assets/Caricaturas/estaticas/tuio.svg"
-                    gifUrl="../src/assets/Caricaturas/animadas/tulio-gif.gif"
+                    perfilURL="https://github.com/micder1"
+                    imgURL="../src/assets/Caricaturas/estaticas/tulio.svg"
+                    gifURL="../src/assets/Caricaturas/animadas/tulio.gif"
                     funcao="Dev.back-end"
                  />
 

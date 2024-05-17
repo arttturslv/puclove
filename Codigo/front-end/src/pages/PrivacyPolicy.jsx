@@ -2,6 +2,9 @@ import React from 'react';
 import { Link as LinkExternal } from 'react-router-dom'
 import {motion} from 'framer-motion';
 
+import goBack from "../assets/Icons/revert.svg";
+
+
 const PrivacyPolicy = () => {
 
     return (
@@ -10,12 +13,12 @@ const PrivacyPolicy = () => {
             transition={{duration:1}}
             animate = {{opacity:1 }}
             exit={{opacity:0}}
-            className="w-screen h-screen flex justify-center overflow-hidden text-white bg-cover bg-[url('../src/assets/Background-svg.svg')]">
+            className="w-screen h-screen flex justify-center overflow-hidden text-white bg-cover bg-[url('../src\assets\Background\bg_people.svg')]">
             <div className='w-[90%] max-h-[90%] rounded-xl relative top-[5%] bg-cinzaBlack py-6 pb-24 px-5 md:px-12'>
                 <div className='flex pb-2 md:pb-6 '>
                     <LinkExternal className='w-100% m-0 relative left-[80%] md:left-[90%]' to="/">
                         <div className='flex  hover:text-vermelhoSanguino items-center gap-1 left font-thin text-sm'>
-                            <img className='w-7' src="src\assets\Icones\icon voltar.svg" alt="icone de voltar" />
+                            <img className='w-7' src={goBack} alt="icone de voltar" />
                             voltar
                         </div>
                     </LinkExternal>

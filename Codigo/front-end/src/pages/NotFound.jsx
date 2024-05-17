@@ -2,6 +2,8 @@ import { } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {motion} from 'framer-motion';
 
+import lostAnimation from '../assets/Background/lost.gif'
+
 const NotFound = () => {
     const navigate = useNavigate();
 
@@ -11,7 +13,7 @@ const NotFound = () => {
             transition={{duration:1}}
             animate = {{opacity:1 }}
             exit={{opacity:0}}
-            className="w-full h-screen bg-[url('../src\assets\background-linhas.svg')]">
+            className="w-full h-screen bg-[url('../src\assets\Background\bg_lines.svg')]">
             <div className="z-40 m-auto h-screen content-center flex flex-wrap justify-center  ">
                 <div className="p-5 bg-vermelhoSanguino text-white rounded shadow-xl ">
                     <h1 className="font-bold text-3xl">Você está perdido?</h1>
@@ -22,7 +24,7 @@ const NotFound = () => {
                     😱
                 </div>
             </div>
-            <img className="z-10 absolute left-[10%] bottom-[20%]" src="../src/assets/lost.gif" alt="" />
+            <img className="z-10 absolute left-[10%] bottom-[20%]" src={lostAnimation} alt="" />
         </motion.div>
     )
 }

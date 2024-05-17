@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {motion} from 'framer-motion';
 
+import cupidBlack from '../assets/Background/cupid_black.webp'
+
 const Carregamento = () => {
     const navigate = useNavigate();
 
@@ -80,7 +82,7 @@ const Carregamento = () => {
         exit={{opacity:0}} 
         id='as' className='w-full h-[100vh] p-20 bg-vermelhoSanguino' >
             <div>
-                <img width="400px" className='absolute right-0 bottom-0' src="src\assets\cupido1.webp" alt="" />
+                <img width="400px" className='absolute right-0 bottom-0' src={cupidBlack} alt="" />
                 <p id="txt" className='text-center text-5xl font-extrabold 	'></p>
             </div>
 

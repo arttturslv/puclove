@@ -8,6 +8,13 @@ import { useNavigate } from "react-router-dom";
 import "../styles.css";
 import { motion } from 'framer-motion';
 
+import chat from '../assets/Icons/chat.svg';
+import settings from '../assets/Icons/settings.svg';
+import myLikes from '../assets/Icons/my_likes.svg';
+import liked from '../assets/Icons/my_likes.svg';
+import reload from '../assets/Icons/my_likes.svg';
+import close from '../assets/Icons/my_likes.svg';
+
 const matches = () => {
 
     const navigate = useNavigate(); //usado no botão continuar para ir para a home
@@ -213,16 +220,16 @@ const matches = () => {
                     <div className="grid h-screen w-screen justify-content align-center">
                         <h1 id="its" className=" text-[6vw] font-black absolute  duration-[1s] text-black   top-[-100vh] left-[80%] ">It's a </h1>
                         <h1 id="match" className="z-[99999] text-[6vw] font-black absolute delay-50 text-black  duration-[1s] top-[-100vh] left-[80%] "> match!</h1>
-                        <img id="heart" className="w-5 absolute ml-[120px] top-[730px] justify-self-center drop-shadow-2xl scale-[0.8] delay-100 duration-[1s] " src="/src/assets/Icones/icon match.svg" alt="" />
+                        <img id="heart" className="w-5 absolute ml-[120px] top-[730px] justify-self-center drop-shadow-2xl scale-[0.8] delay-100 duration-[1s] " src={liked} alt="" />
                     </div>
                 </div>)
-            }
+            } 
             <div id='central' onLoad={() => setTimeout(verifica, 2000)} className=" m-0 my-auto mx-auto w-[100%]  sm:w-[500px] h-[100%] overflow-y-scroll overflow-x-hidden">
                 <div id='btnHeader' className="h-[70px] p-4 flex justify-center bg-amareloOcre">
                     <div className="absolute grid grid-cols-3">
-                        <img onClick={() => setStatusAnim(true)} src="../src/assets/Icones/chat.svg" alt="icone de chat" className='w-[65%] hover:w-[70%] active:w-[62%] transition ease-in-out' />
-                        <img onClick={() => navigate("/config")} src="../src/assets/Icones/icon configuracoes.svg" alt="icone de configurações" className='w-[65%] hover:w-[70%] active:w-[62%] transition ease-in-out' />
-                        <img id="minhasCurtidas" onClick={onMatches} src="../src/assets/Icones/minhasCurtidas.svg" alt="icone de minhas curtidas" className='w-[65%] animate-none hover:w-[70%] active:w-[62%] transition ease-in-out' />
+                        <img onClick={() => setStatusAnim(true)} src={chat} alt="icone de chat" className='w-[65%] hover:w-[70%] active:w-[62%] transition ease-in-out' />
+                        <img onClick={() => navigate("/config")} src={settings} alt="icone de configurações" className='w-[65%] hover:w-[70%] active:w-[62%] transition ease-in-out' />
+                        <img id="minhasCurtidas" onClick={onMatches} src={myLikes} alt="icone de minhas curtidas" className='w-[65%] animate-none hover:w-[70%] active:w-[62%] transition ease-in-out' />
                     </div>
                 </div>
 
@@ -239,9 +246,9 @@ const matches = () => {
                     </div>
                     <div id='btnProfile' className="  translate-y-[-180px]  flex justify-center">
                         <div className="grid grid-cols-3">
-                            <img onClick={diminuir} src="../src/assets/Icones/icon resetar.svg" alt="icone de voltar" className='w-[75%] hover:w-[80%] active:w-[70%] transition ease-in-out' />
-                            <img onClick={pular} src="../src/assets/Icones/icon not_match.svg" alt="icone de negar" className='w-[75%] hover:w-[80%] active:w-[70%] transition ease-in-out' />
-                            <img onClick={incrementar} src="../src/assets/Icones/icon match.svg" alt="icone de curtir" className='w-[75%] hover:w-[80%] active:w-[70%] transition ease-in-out' />
+                            <img onClick={diminuir} src={reload} alt="icone de voltar" className='w-[75%] hover:w-[80%] active:w-[70%] transition ease-in-out' />
+                            <img onClick={pular} src={close} alt="icone de negar" className='w-[75%] hover:w-[80%] active:w-[70%] transition ease-in-out' />
+                            <img onClick={incrementar} src={liked} alt="icone de curtir" className='w-[75%] hover:w-[80%] active:w-[70%] transition ease-in-out' />
                         </div>
 
                     </div>
