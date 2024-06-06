@@ -1,307 +1,129 @@
-import React, { useEffect } from "react";
-import "../StyleCadastro.css";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import axios from "axios";
-import api from "../api/axiosConfig";
-import Interesses from "../components/Interesses";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
 import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import ErrorNotification from "../components/ErrorNotification";
 
-const RegistrationForm = () => {
+import API from "../api/axiosConfig";
+import CadastroUm from '../components/Cadastro/CadastroUm'
+import CadastroDois from '../components/Cadastro/CadastroDois'
+
+import Navbar from "../components/Navbar";
+import Modal from "../components/Modal";
+
+
+
+
+export default function Cadastro (){
+  
+  
   const {
     register,
     handleSubmit,
-    formState: { errors },
     watch,
-    getValues,
+    reset,
+    formState: { errors },
   } = useForm();
 
-  const [newUser, setNewUser] = useState({
-    name: "",
-    email: "",
-    password: "",
-    birthDate: "",
-    course: "",
-    campus: "",
-    interests: [],
-    instagram: "",
-    intention: "",
-    role: "USER",
-  });
 
-  const onSubmit = async (data) => {
-    let arrayInterests = placeholder.split(", ");
-    data.interests = arrayInterests;
+  const [signProgress, setSignProgress] = useState("first"); // usado para verificar o processo de cadastro (0 = primeira parte | 1, segunda parte | 2 cadastro completo)
+  const [arrayInteresses, setArrayInteresses] = useState(null);
+  const [placeholder, setPlaceholder] = useState(""); //usado para armazenar os valores selecionados no modal de interesse
+  const [displayNotification , setDisplayNotification ] = useState(false); //usado para controlar a visibilidade da mensagem de cadastro concluido.
 
-    setNewUser((prevUser) => ({ ...prevUser, ...data }));
-
-    console.log(data.interests);
-    try {
-      const updatedUser = { ...newUser, interests: data.interests }; // Atualiza newUser com os interesses
-      const response = await axios.post(
-        "http://localhost:8080/auth/register",
-        updatedUser
-      );
-      console.log("Registration successful", response.data);
-      alert("registrado com sucesso");
-      setTimeout(() => {
-        navigate("/login");
-      }, 2000);
-    } catch (error) {
-      console.error("Registration failed", error);
-    }
-  };
-
-  const [clicado, setClicado] = useState(false);
-
-  const handleClick = (e) => {
-    //verifica se clicaram para voltar no formulario anterior, se sim, atualiza o "clicado"
-    setClicado(true);
-  };
-  // useEffect(() => { //caso o clicado seja atualizado, ele atualiza o valor do componente que esconde esse formulario e mostra o anterior.
-  //   setMostrarComponente(true)
-  // }, [clicado]);
-
-  const [opcoes, setOpcoes] = useState(); // state para armazenar os interesses pegados da api na variavel opções
+  const navigate = useNavigate();
+ 
   useEffect(() => {
-    //useEffect faz apenas um get
-    api
-      .get("/interests")
-      .then((response) => setOpcoes(response.data))
-      .catch((err) => {
-        console.error("ops! ocorreu um erro" + err);
-      });
+    console.log(placeholder)
+  }, [placeholder])
+
+  useEffect(() => {
+    getInterests();
   }, []);
 
-  const [placeholder, setPlaceholder] = useState("Clique aqui para escolher"); //usado para armazenar os valores selecionados no modal de interesse
-  const [openModal, setOpenModal] = useState(false); //usado para abrir o modal de interesses.
-  const navigate = useNavigate();
-  var containerUm = document.getElementById("ContainerUm");
-  var containerDois = document.getElementById("containerDois");
-
-  function bottonClick(event) {
-    event.preventDefault();
-    containerUm.style.display = "none";
-    containerDois.style.display = "flex";
+  async function getInterests() {
+    try {
+      const response = await API.interests;      
+      var data = response.data;
+      setArrayInteresses(data);
+      console.log(data)
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  function bottonReturn(event) {
-    event.preventDefault();
-    containerUm.style.display = "flex";
-    containerDois.style.display = "none";
-  }
+  const onSubmit = async (data) => {
 
+    if(signProgress=="first") {
+      setSignProgress("second");
+      console.log("preencher outra pagina")
+      return;
+    }
+
+     let arrayInterests = placeholder.split(", ");
+     data.interests = arrayInterests;    
+    
+     try {
+      const response = await API.register(data);
+      console.log("Registration successful", response.data);
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
+    } catch (error) {
+      console.error("Registration failed", error);
+      setDisplayNotification(true);
+    }
+
+  };
+  
   return (
     <motion.div
       initial={{ opacity: 0 }}
       transition={{ duration: 1 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className=" bg-cover w-full h-full bg-[url('../src\assets\background-linhas.svg')]"
+      className=" bg-cover w-full h-full bg-[url('../src\assets\Background\bg_lines.svg')]"
     >
       <Navbar />
-      <form className="cadastro-form">
-        <div className="container-cadastro " id="ContainerUm">
-          <div className="wrap-cadastro">
-            <span className="cadastro-form-title">
-              Cadastre e conheça seu amor
-            </span>
+      
+      {
+        displayNotification==true?
+        <ErrorNotification displayNotification={setDisplayNotification} timer={25}/>:""
+      }
 
-            <div className="wrap-inputCadastro">
-              <h4>Qual seu nome?</h4>
-              <input
-                className="input"
-                type="name"
-                placeholder="Digite seu nome"
-                name="name"
-                {...register("name", { required: true })}
-              />
-              {errors?.name?.type === "required" && (
-                <p className=" text-vermelhoSanguino">Nome invalido*</p>
-              )}
-            </div>
-            <div className="wrap-inputCadastro">
-              <h4>Digite o e-mail:</h4>
-              <input
-                className="input"
-                type="email"
-                placeholder="meuemail@sga.pucminas.br"
-                name="email"
-                {...register("email", {
-                  required: true,
-                  validate: {
-                    maxLength: (v) =>
-                      v.length <= 100 ||
-                      "O email tem tamanho maximo de 100 caracteres.",
-                    matchPattern: (v) =>
-                      /^\w+@sga\.pucminas\.br$/.test(v) ||
-                      "Digite um email valido.",
-                  },
-                })}
-              />
+      <div className="flex-col flex gap-2 justify-center items-center w-[100vw] h-[93vh]">
 
-              {errors?.email?.message && (
-                <p className=" text-vermelhoSanguino">{errors.email.message}</p>
-              )}
-            </div>
-            {errors?.email?.type === "required" && (
-              <p className=" text-vermelhoSanguino">Email invalido*</p>
-            )}
-            <div className="wrap-inputCadastro">
-              <h4>Digite sua senha:</h4>
-              <input
-                className="input"
-                type="password"
-                placeholder="********"
-                name="password"
-                {...register("password", { required: true, minLength: 7 })}
-              />
-              {errors?.password?.type === "minLength" && (
-                <p className=" text-vermelhoSanguino">
-                  A senha precisa de ter ao menos 7 caracteres*
-                </p>
-              )}
-              {errors?.password?.type === "required" && (
-                <p className=" text-vermelhoSanguino">Digite a senha*</p>
-              )}
-            </div>
-            <div className="wrap-inputCadastro">
-              <h4>Confirme a senha:</h4>
-              <input
-                className="input"
-                type="password"
-                placeholder="********"
-                name="passwordConfirm"
-                {...register("passwordConfirm", { required: true })}
-              />
-              {watch("passwordConfirm") !== watch("password") &&
-              getValues("passwordConfirm") ? (
-                <p className=" text-vermelhoSanguino">password not match</p>
-              ) : null}
-            </div>
-            <div className="wrap-inputCadastro">
-              <h4>Quando você nasceu?</h4>
-              <input
-                className="input datepickerbg"
-                type="date"
-                placeholder="01/01/1900"
-                name="birthDate"
-                {...register("birthDate", { required: true })}
-              />
-              {errors?.date?.type === "valueAsDate" && (
-                <p className=" text-vermelhoSanguino">Data invalida*</p>
-              )}
-            </div>
-
-            <div className="container-cadastro-form-btn">
-              <button
-                id="show-or-hide"
-                className="cadastro-form-btn"
-                onClick={bottonClick}
-              >
-                Continuar
-              </button>
-            </div>
+          <div className="w-[500px] max-sm:w-full max-sm:h-full bg-[#333333] shadow-4xl overflow-hidden max-sm:rounded-none rounded-xl pt-10 flex flex-col justify-center items-center">
+            <form className="w-[80%] flex flex-col gap-1" onSubmit={handleSubmit(onSubmit)}>
+        
+              {
+              signProgress=="first"
+                ?
+                  <CadastroUm setSignProgress={setSignProgress} register={register} watch={watch} errors={errors} ></CadastroUm>
+                : //placeholder, arrayInteresses, setPlaceholder, setSignProgress, register, errors
+                  <CadastroDois placeholder={placeholder} setPlaceholder={setPlaceholder} arrayInteresses={arrayInteresses} setSignProgress={setSignProgress} register={register} errors={errors}></CadastroDois>
+              }
+  
+            </form>
           </div>
-        </div>
-        <div className="container-cadastro2 " id="containerDois">
-          {openModal && (
-            <Interesses
-              closeModal={() => setOpenModal(!openModal)}
-              setPlaceholder={setPlaceholder}
-              opcoes={opcoes}
-            />
-          )}
-          <div className="wrap-cadastro">
-            <span className="cadastro-form-title">
-              Cadastre e conheça seu amor
-            </span>
-
-            <div className="wrap-inputCadastro">
-              <h4>Qual seu curso?</h4>
-              <input
-                className="input"
-                type="text"
-                placeholder="Digite seu curso"
-                name="course"
-                {...register("course", { required: true })}
-              />
-            </div>
-
-            <div className="wrap-inputCadastro">
-              <h4>Qual seu campus?</h4>
-              <select
-                className="input"
-                id="cursos"
-                name="campus"
-                {...register("campus", { required: true })}
-              >
-                <option value="">Clique aqui para escolher</option>
-                <option value="São Gabriel">São Gabriel</option>
-                <option value="Praça da Liberdade">Praça da Liberdade</option>
-                <option value="Coração Eucarístico">Coração Eucarístico</option>
-              </select>
-            </div>
-
-            <div className="wrap-inputCadastro">
-              <h4>Quais seus interesses?</h4>
-              <input
-                className="input  placeholder-white hover:placeholder-cinzaBlack"
-                name="interests"
-                type="text"
-                placeholder={placeholder}
-                onClick={() => setOpenModal(true)}
-              />
-            </div>
-            <div className="wrap-inputCadastro">
-              <h4>Qual seu instagram?</h4>
-              <input
-                className="input after:text-black"
-                type=""
-                placeholder="@"
-                name="instagram"
-                {...register("instagram", { required: true })}
-              />
-            </div>
-            <div className="wrap-inputCadastro">
-              <h4>O que você busca?</h4>
-              <select
-                className="input"
-                id="intencao"
-                name="intention"
-                {...register("intention", { required: true })}
-              >
-                <option value="FRIENDSHIP">Amizade</option>
-                <option value="SERIOUS_RELATIONSHIP">Um romance</option>
-                <option value="SOMETHING_CASUAL">
-                  Algo casual
-                </option>
-              </select>
-            </div>
-
-            <div className="container-cadastro-form-btn">
-              <button
-                id="show-or-hide"
-                className="cadastro-form-btn"
-                onClick={bottonReturn}
-              >
-                Voltar
-              </button>
-              <button
-                type="submit"
-                onClick={(e) => handleSubmit(onSubmit)(e)}
-                className="cadastro-form-btn"
-              >
-                Cadastrar
-              </button>
-            </div>
+          <div className="flex gap-3 pb-2">
+              {
+              signProgress=="first"
+              ?
+                <>
+                  <figure className="rounded-full bg-[#AD5E5E] w-2 h-2" ></figure>
+                  <figure className="rounded-full bg-[#3B3B3B] w-2 h-2" ></figure> 
+                </>
+              :
+                <>
+                  <figure className="rounded-full bg-[#3B3B3B] w-2 h-2" ></figure>
+                  <figure className="rounded-full bg-[#AD5E5E] w-2 h-2" ></figure> 
+                </>          
+              }
           </div>
-        </div>
-      </form>
+          
+      </div>
     </motion.div>
   );
 };
-
-export default RegistrationForm;
