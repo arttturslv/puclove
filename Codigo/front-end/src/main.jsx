@@ -5,14 +5,15 @@ import './index.css'
 //CRIANDO A ROUTER (ROTAS)
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 //IMPORTANDO PAGINAS
-import Home from './pages/home'
-import Login from './pages/login'
-import LoginTail from './pages/loginTail'
+import Home from './pages/Home'
+import Login from './pages/Login'
 import Cadastro from './pages/cadastro'
 import PrivacyPolicy from './pages/PrivacyPolicy'
-import Matches from './pages/matches'
+import Matches from './pages/MatchesNew'
+import Skeleton from './pages/MatchesSkeleton'
+
 import NotFound from './pages/NotFound'
-import Configuracao from "./pages/config";
+import Configuracao from "./pages/Configuracao";
 import Carregamento from './pages/carregamento'
 import { AnimatePresence } from 'framer-motion'
 
@@ -27,10 +28,6 @@ const router = createBrowserRouter([
     element: <Login/>
   },
   {
-    path: "/loginTail",
-    element: <LoginTail/>
-  },
-  {
     path: "/cadastro",
     element: <Cadastro/>
   },
@@ -41,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: "/matches",
     element: <Matches/>
+  },
+  {
+    path: "/skeleton",
+    element: <Skeleton/>
   },
   {
     path: "*",
