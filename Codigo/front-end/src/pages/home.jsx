@@ -3,9 +3,7 @@ import Navbar from '../components/Navbar';
 import {motion} from 'framer-motion';
 import Personagens from '../components/Personagens';
 
-import bgLines from '../assets/Background/bg_lines.svg';
 import phrase from '../assets/phrase.svg';
-
 
 const Home = () => {
     return (
@@ -18,20 +16,20 @@ const Home = () => {
 
            <Navbar />
 
-            <div className="max-w-7xl m-0 my-auto mx-auto  logo-nome py-72 h-full grid grid-cols-1 content-center">
+            <div className="max-w-7xl m-0 my-auto mx-auto logo-nome py-72 max-sm:py-48 h-full grid grid-cols-1 content-center">
                 <img className='w-4/5 m-0 my-auto mx-auto md:w-3/5 lg:w-3/6' src={phrase} alt="PUCLOVE - Conectando corações, impulsionando comunidades" />
 
             </div>
 
             <div id="sobre" className="m-0 my-auto mx-auto  max-w-7xl texto space-y-2.5 w-4/5">
-                <h3 className='sm:text-2xl	 md:text-3xl	 lg:text-4xl font-semibold	'>Sobre</h3>
+                <h3 className='sm:text-3xl md:text-3xl lg:text-4xl font-semibold'>Sobre</h3>
                 <p className='sm:text-base md:text-base lg:text-lg ' >Bem-vindo ao PucLove, o seu novo destino para conexões significativas entre estudantes da PUC (Pontifícia Universidade Católica)! Aqui, criamos um espaço virtual onde os alunos podem se encontrar, compartilhar interesses, e estabelecer relacionamentos que vão além das salas de aula. O PucLove é mais do que apenas um site de relacionamento; é uma comunidade que promove a amizade, o networking e, claro, o amor entre os estudantes da PUC.</p>
                 <p className='sm:text-base md:text-base lg:text-lg '>O PucLove é um projeto apaixonante criado por um time dedicado de desenvolvedores que acredita que as conexões entre estudantes podem ser transformadoras. Com a visão de proporcionar uma experiência interativa excepcional, utilizamos as tecnologias de ponta do React e Java SpringBoot para criar uma plataforma intuitiva e dinâmica.</p>
                 <p className='sm:text-base md:text-base lg:text-lg '>No PucLove, nosso objetivo é criar uma comunidade onde estudantes da PUC possam se conectar, compartilhar ideias, interesses e, quem sabe, encontrar o amor. Estamos comprometidos em proporcionar uma plataforma segura, inclusiva e divertida para que você possa construir relacionamentos significativos durante seus anos acadêmicos.</p>
                 <p className='sm:text-base md:text-base lg:text-lg '>Junte-se a nós hoje mesmo e faça parte da comunidade PucLove. Conecte-se, compartilhe e, quem sabe, encontre o amor entre as salas de aula e os corredores da PUC!</p>
             </div>
 
-            <div className="m-0 my-auto mx-auto max-w-7xl caricaturas py-10 flex items-start justify-between w-5/6 flex-wrap">
+            <div className=" mx-auto max-w-7xl caricaturas py-10 flex items-start max-sm:justify-center justify-between w-5/6 flex-wrap">
 
                 <Personagens 
                     nome="Alex Gonçalves"
