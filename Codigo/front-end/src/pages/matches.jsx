@@ -32,11 +32,12 @@ const matches = () => {
 
     useEffect(() => {
         console.log("Data armazenada.")
-        setData(JSON.parse(sessionStorage.getItem("matches")));
+        const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+        setData(currentUser.user);
         console.log("Token armazenado.")
-        setToken(sessionStorage.getItem("authToken"));
+        setToken(currentUser.token);
         console.log("Matches dados armazenado.")
-        setmatchesDados((JSON.parse(sessionStorage.getItem("userData")).matches));
+        setmatchesDados((JSON.parse(sessionStorage.getItem("CompatibleUsers")).matches));
         console.log(matchesDados)
         
     }, []);
