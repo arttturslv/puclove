@@ -1,18 +1,21 @@
 import React from 'react';
 import { useState } from 'react';
 
-function Slider(props) {
-    const slides = props.image;
+function Slider({images}) {
+
+    if(images==undefined) {
+        images=[0];
+    }
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const prevSlide = () => {
         const ifFirstSlide = currentIndex === 0;
-        const newIndex = ifFirstSlide ? slides.length - 1 : currentIndex - 1;
+        const newIndex = ifFirstSlide ? images.length - 1 : currentIndex - 1;
         setCurrentIndex(newIndex);
     }
     const nextSlide = () => {
-        const ifLastSlide = currentIndex === slides.length - 1;
+        const ifLastSlide = currentIndex === images.length - 1;
         const newIndex = ifLastSlide ? 0 : currentIndex + 1;
         setCurrentIndex(newIndex);
 
@@ -23,10 +26,15 @@ function Slider(props) {
     }
     
     function formataURL() {
-        if(currentIndex>=slides.length) {
+        if(images[0]==0) {
+
+            return "https://i.imgur.com/TgKTb1z.png"
+        }
+
+        if(currentIndex>=images.length) {
             setCurrentIndex(0);
         } else {
-            let url = slides[currentIndex].imagePath;
+            let url = images[currentIndex].imagePath;
             let newURL = url.split('images');
             newURL = "src/assets/images\\"+newURL[1];
             return (newURL)
@@ -39,7 +47,18 @@ function Slider(props) {
             <div  style={{backgroundImage: `url(${formataURL()})`}}  className='w-full h-full justify-center flex rounded-2xl bg-center bg-cover '>
                 {/*dots index*/}
                 <div className='flex justify-center py-3 w-[90%]'>
-                    {slides.map((slide, slideIndex) => (
+                    {
+                    images==undefined? 
+
+                    <div 
+                        key={slideIndex} 
+                         
+                        className='cursor-pointer pl-[10%] pr-[10%]'
+                        >
+                            <div className={`w-[3em] id=${slideIndex} p h-[4px] rounded-sm bg-amareloPalido shadow-lg`}></div>
+                        </div>
+                        :
+                    images.map((slide, slideIndex) => (
                         <div 
                         key={slideIndex} 
                         onClick={() => goToSlide(slideIndex)} 
