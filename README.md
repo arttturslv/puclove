@@ -50,10 +50,9 @@ Para utilizar o front-end do PUCLove, siga as instruções abaixo:
    - Execute os comandos necessários para instalar as dependências do back-end.
 
 4. **Configuração do MongoDB:**
-   - Certifique-se de configurar corretamente o MongoDB, ajustando as configurações de conexão conforme necessário.
+   - Certifique-se de configurar corretamente o ENV do backend, ajustando as configurações de conexão conforme necessário.
 
 5. **Executar o Projeto:**
-   - Inicie o mongodb.
    - Inicie o servidor back-end.
    - Inicie o servidor front-end.
    - Execute o seguinte comando no terminal:
