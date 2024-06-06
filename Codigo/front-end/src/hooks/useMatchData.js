@@ -15,7 +15,6 @@ async function fetchusersData(token) {
 
 async function fetchUserImage(id) {
   try {
-    // Substitua pela sua lógica para obter a imagem usando a URL correta
     const imageUrl = `http://localhost:8080/api/v1/image/filepath/${id}`;
     const response = await axios.get(imageUrl);
     return response.data; // Retorna diretamente os dados da imagem
