@@ -7,15 +7,12 @@ import ErrorNotification from "../components/ErrorNotification";
 import API from "../api/axiosConfig";
 import CadastroUm from '../components/Cadastro/CadastroUm'
 import CadastroDois from '../components/Cadastro/CadastroDois'
+import CadastroTres from '../components/Cadastro/CadastroTres'
 
 import Navbar from "../components/Navbar";
 import Modal from "../components/Modal";
 
-
-
-
 export default function Cadastro (){
-  
   
   const {
     register,
@@ -102,8 +99,11 @@ export default function Cadastro (){
                 ?
                   <CadastroUm setSignProgress={setSignProgress} register={register} watch={watch} errors={errors} ></CadastroUm>
                 : //placeholder, arrayInteresses, setPlaceholder, setSignProgress, register, errors
+                signProgress=='second'?
                   <CadastroDois placeholder={placeholder} setPlaceholder={setPlaceholder} arrayInteresses={arrayInteresses} setSignProgress={setSignProgress} register={register} errors={errors}></CadastroDois>
-              }
+                :
+                <CadastroTres setSignProgress={setSignProgress}/>
+                }
   
             </form>
           </div>
@@ -114,12 +114,21 @@ export default function Cadastro (){
                 <>
                   <figure className="rounded-full bg-[#AD5E5E] w-2 h-2" ></figure>
                   <figure className="rounded-full bg-[#3B3B3B] w-2 h-2" ></figure> 
+                  <figure className="rounded-full bg-[#3B3B3B] w-2 h-2" ></figure> 
                 </>
               :
+              signProgress=='second'?
                 <>
                   <figure className="rounded-full bg-[#3B3B3B] w-2 h-2" ></figure>
                   <figure className="rounded-full bg-[#AD5E5E] w-2 h-2" ></figure> 
+                  <figure className="rounded-full bg-[#3B3B3B] w-2 h-2" ></figure> 
                 </>          
+                :
+                <>
+                <figure className="rounded-full bg-[#3B3B3B] w-2 h-2" ></figure>
+                <figure className="rounded-full bg-[#3B3B3B] w-2 h-2" ></figure> 
+                <figure className="rounded-full bg-[#AD5E5E] w-2 h-2" ></figure> 
+              </>    
               }
           </div>
           

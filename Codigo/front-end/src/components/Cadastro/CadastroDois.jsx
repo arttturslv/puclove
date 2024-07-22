@@ -4,9 +4,20 @@ import Interesses from '../Interesses'
 
 export default function CadastroDois ({placeholder, arrayInteresses, setPlaceholder, setSignProgress, register, errors}){
 
-      const [isInteressesOpen, setInteressesOpen] = useState(false);
+      const [isInteressesOpen, setInteressesOpen] = useState(true);
 
+    function isInteressesValid() {
+      console.log(placeholder)
+      if(placeholder.length>0) {
+        return true;
+      }
+      return false;
+    }
 
+    useEffect(() => {
+      console.log('mudou, verifica error');
+      
+    }, [placeholder])
 
     return (
         <>
@@ -73,6 +84,7 @@ export default function CadastroDois ({placeholder, arrayInteresses, setPlacehol
                 onClick={()=> setInteressesOpen(!isInteressesOpen)}
               required
             />
+            {!isInteressesValid && (<p className="text-right text-[12px] text-vermelhoSanguino">Adicione ao menos 3 interesses*</p>)}
             </div>
 
             <div>
@@ -109,7 +121,7 @@ export default function CadastroDois ({placeholder, arrayInteresses, setPlacehol
 
             <div className="justify-center flex py-4">
               <button onClick={() => setSignProgress("first")} className=" font-extrabold hover:text-[#e2c09b] text-[#fff] hover:bg-[#1c1c1c] uppercase text-[18px] rounded-xl  w-[180px] h-[45px] mt-[10px] text-center">Voltar</button>
-              <button className=" font-extrabold hover:text-[#e2c09b] text-[#fff] hover:bg-[#1c1c1c] uppercase text-[18px] rounded-xl  w-[180px] h-[45px] mt-[10px] text-center" type="submit">Continuar</button>
+              <button onClick={() => setSignProgress("third")} className=" font-extrabold hover:text-[#e2c09b] text-[#fff] hover:bg-[#1c1c1c] uppercase text-[18px] rounded-xl  w-[180px] h-[45px] mt-[10px] text-center" >Continuar</button>
             </div>
         </>
     )

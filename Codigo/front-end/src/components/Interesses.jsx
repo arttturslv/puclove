@@ -57,7 +57,7 @@ function Interesses({closeModalInteresses, setPlaceholder, opcoes }) {
                     );
                 })}
                 </ul>
-                <button className='hover:text-amareloOcre font-bold pt-5 flex justify-self-center'
+                <button disabled={newInteresses>0?true:false} className={[newInteresses.length>0?'hover:bg-amareloOcre hover:text-cinzaBlack font-bold mt-3 flex justify-self-center border border-white/60 py-2 px-6 rounded-lg': 'font-bold mt-3 text-white/60 flex justify-self-center border border-white/60 py-2 px-6 rounded-lg']}
                     onClick={() => closeModalInteresses()}> Voltar
                 </button>
             </div>
