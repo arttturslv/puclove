@@ -1,5 +1,5 @@
 import { } from "react-router-dom";
-import Slider from "../../components/Slider";
+import Slider from "./components/Slider";
 import Modal from "../../components/Modal";
 import ModalMatch from "../../components/ModalMatch";
 import { useMatchResponse } from "../../hooks/isMatch";

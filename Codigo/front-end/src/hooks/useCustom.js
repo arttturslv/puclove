@@ -19,10 +19,16 @@ export function calculaIdade(dataNasc) {
 
 export function decideEmoji(intent) {
 if (intent == "FRIENDSHIP") {
-    return " amizades 😁"
+    return "Novas amizades!"
 } else if (intent == "SERIOUS_RELATIONSHIP") {
-    return " um relacionamento sério 🥰"
+    return "Um relacionamento sério!"
 } else {
-    return " algo casual 🥰"
+    return "Algo casual."
 }
+}
+
+export function getInterests() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const interests = currentUser.user.interests;
+    return interests;
 }
