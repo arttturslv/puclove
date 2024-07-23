@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import ImageInput from "../components/ImageInput";
-import SongOptions from "../components/Song";
+import ImageInput from "../../components/ImageInput";
+import SongOptions from "../../components/Song";
 
-import voltarIcon from "../assets/Icons/revert.svg";
-import fakeWork from "../assets/Background/bg_sga.png";
-import workIcon from "../assets/Icons/excel.svg";
+import voltarIcon from "../../assets/Icons/revert.svg";
+import fakeWork from "../../assets/Background/bg_sga.png";
+import workIcon from "../../assets/Icons/excel.svg";
 import axios from "axios";
 
 const Configuracao = () => {

@@ -5,15 +5,16 @@ import './index.css'
 //CRIANDO A ROUTER (ROTAS)
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 //IMPORTANDO PAGINAS
-import Home from './pages/Home'
-import Login from './pages/Login'
-import Cadastro from './pages/cadastro'
-import PrivacyPolicy from './pages/PrivacyPolicy'
-import Matches from './pages/MatchesNew'
-import Skeleton from './pages/MatchesSkeleton'
+import Home from './pages/Home/Index'
+import Login from './pages/Login/Index'
+import Cadastro from './pages/Cadastro/Index'
+import PrivacyPolicy from './pages/Misc/PrivacyPolicy'
+import Matches from './pages/Matches/matches'
+import Matches1 from './pages/Matches/MatchesNew'
+import Skeleton from './pages/Matches/Skeleton'
 
-import NotFound from './pages/NotFound'
-import Configuracao from "./pages/Configuracao";
+import NotFound from './pages/Misc/NotFound'
+import Configuracao from "./pages/Configuração/Index";
 import Carregamento from './pages/carregamento'
 import { AnimatePresence } from 'framer-motion'
 
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
   {
     path: "/carregamento",
     element: <Carregamento />,
+  },
+  {
+    path: "/matches1",
+    element: <Matches1 />,
   },
 ])
 

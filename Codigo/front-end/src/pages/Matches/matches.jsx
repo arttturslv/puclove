@@ -1,19 +1,19 @@
 import { } from "react-router-dom";
-import Slider from "../components/Slider";
-import Modal from "../components/Modal";
-import ModalMatch from "../components/ModalMatch";
-import { useMatchResponse } from "../hooks/isMatch";
+import Slider from "../../components/Slider";
+import Modal from "../../components/Modal";
+import ModalMatch from "../../components/ModalMatch";
+import { useMatchResponse } from "../../hooks/isMatch";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles.css";
+import "../../index.css";
 import { motion } from 'framer-motion';
 
-import chat from '../assets/Icons/chat.svg';
-import settings from '../assets/Icons/settings.svg';
-import myLikes from '../assets/Icons/my_likes.svg';
-import liked from '../assets/Icons/my_likes.svg';
-import reload from '../assets/Icons/my_likes.svg';
-import close from '../assets/Icons/my_likes.svg';
+import chat from '../../assets/Icons/chat.svg';
+import settings from '../../assets/Icons/settings.svg';
+import myLikes from '../../assets/Icons/my_likes.svg';
+import liked from '../../assets/Icons/my_likes.svg';
+import reload from '../../assets/Icons/my_likes.svg';
+import close from '../../assets/Icons/my_likes.svg';
 
 const matches = () => {
 

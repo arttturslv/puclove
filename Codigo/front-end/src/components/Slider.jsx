@@ -28,7 +28,7 @@ function Slider({images}) {
     function formataURL() {
         if(images[0]==0) {
 
-            return "https://i.imgur.com/TgKTb1z.png"
+            return "https://i.pinimg.com/736x/97/88/6f/97886f375f819b1cf3f96ffbcec21c0e.jpg"
         }
 
         if(currentIndex>=images.length) {
@@ -43,8 +43,8 @@ function Slider({images}) {
 
     return (
         <div 
-        className='h-[750px] w-full m-auto py-1 relative group'>
-            <div  style={{backgroundImage: `url(${formataURL()})`}}  className='w-full h-full justify-center flex rounded-2xl bg-center bg-cover '>
+        className='h-[750px] w-full m-auto py-1 group absolute'>
+            <div  style={{backgroundImage: `url(${formataURL()})`}}  className='w-full h-full justify-center flex md:rounded-2xl rounded-none  bg-center bg-cover'>
                 {/*dots index*/}
                 <div className='flex justify-center py-3 w-[90%]'>
                     {
@@ -55,7 +55,7 @@ function Slider({images}) {
                          
                         className='cursor-pointer pl-[10%] pr-[10%]'
                         >
-                            <div className={`w-[3em] id=${slideIndex} p h-[4px] rounded-sm bg-amareloPalido shadow-lg`}></div>
+                            <div className={`w-[3em] id=${slideIndex} p h-[4px] rounded-sm bg-vermelhoSanguino shadow-lg`}></div>
                         </div>
                         :
                     images.map((slide, slideIndex) => (
@@ -64,10 +64,13 @@ function Slider({images}) {
                         onClick={() => goToSlide(slideIndex)} 
                         className='cursor-pointer pl-[10%] pr-[10%]'
                         >
-                            <div className={`w-[3em] id=${slideIndex} p h-[4px] rounded-sm bg-amareloPalido shadow-lg`}></div>
+                            <div className={`w-[3em] id=${slideIndex} p h-[4px] rounded-sm bg-vermelhoSanguino shadow-lg `}></div>
                         </div>
                     ))}
                 </div>
+
+            </div>
+            <div className='w-full h-[60%] absolute bottom-0 bg-gradient-to-t from-black'>
 
             </div>
 

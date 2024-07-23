@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import Input from "../Input";
-import Interesses from '../Interesses'
+import Input from "../../components/Input";
+import Interesses from '../../components/Interesses'
 
 export default function CadastroDois ({placeholder, arrayInteresses, setPlaceholder, setSignProgress, register, errors}){
 

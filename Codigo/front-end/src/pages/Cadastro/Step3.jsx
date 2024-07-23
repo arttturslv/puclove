@@ -1,4 +1,4 @@
-import ImageInput from "../ImageInput";
+import ImageInput from "../../components/ImageInput";
 import { useState } from 'react';
 export default function CadastroTres({setSignProgress}) {
   const [images, setImages] = useState(Array(6).fill(null));

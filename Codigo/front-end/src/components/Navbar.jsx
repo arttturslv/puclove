@@ -69,7 +69,7 @@ export default function Navbar() {
                             </div>
                             :
                             <div>
-                                <button onClick={() => navigate("/carregamento")} className='btn font-semibold transition-all duration-500 hover:md:text-amareloOcre hover:text-black bg-amareloOcre hover:bg-vermelhoSanguino text-vermelhoSanguino md:text-vermelhoSanguino md:bg-white rounded-full px-3 py-1 md:static '>Match</button>
+                                <button onClick={() => navigate("/skeleton")} className='btn font-semibold transition-all duration-500 hover:md:text-amareloOcre hover:text-black bg-amareloOcre hover:bg-vermelhoSanguino text-vermelhoSanguino md:text-vermelhoSanguino md:bg-white rounded-full px-3 py-1 md:static '>Match</button>
                                 <button onClick={logout} className='btn font-semibold hover:text-white rounded-full px-3 transition-all duration-500  md:static '>Logout</button>
                             </div>
                         }

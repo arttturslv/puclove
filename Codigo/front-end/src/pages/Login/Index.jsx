@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import {motion} from 'framer-motion';
 import { useForm } from "react-hook-form";
 
-import Navbar from "../components/Navbar";
-import API from '../api/axiosConfig'
-import Input from "../components/Input";
-import ErrorNotification from '../components/ErrorNotification'
+import Navbar from "../../components/Navbar";
+import API from '../../api/axiosConfig'
+import Input from "../../components/Input";
+import ErrorNotification from '../../components/ErrorNotification'
 
-import logo from "../assets/favicon.svg";
+import logo from "../../assets/favicon.svg";
 
 export default function Login () {
 

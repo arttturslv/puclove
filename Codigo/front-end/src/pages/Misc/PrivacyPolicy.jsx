@@ -2,7 +2,7 @@ import React from 'react';
 import { Link as LinkExternal } from 'react-router-dom'
 import {motion} from 'framer-motion';
 
-import goBack from "../assets/Icons/revert.svg";
+import goBack from "../../assets/Icons/revert.svg";
 
 
 const PrivacyPolicy = () => {

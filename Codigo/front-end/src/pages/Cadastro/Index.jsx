@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-import ErrorNotification from "../components/ErrorNotification";
+import ErrorNotification from "../../components/ErrorNotification";
 
-import API from "../api/axiosConfig";
-import CadastroUm from '../components/Cadastro/CadastroUm'
-import CadastroDois from '../components/Cadastro/CadastroDois'
-import CadastroTres from '../components/Cadastro/CadastroTres'
+import API from "../../api/axiosConfig";
+import CadastroUm from './Step1'
+import CadastroDois from './Step2'
+import CadastroTres from './Step3'
 
-import Navbar from "../components/Navbar";
-import Modal from "../components/Modal";
+import Navbar from "../../components/Navbar";
 
 export default function Cadastro (){
   

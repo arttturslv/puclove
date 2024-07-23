@@ -1,9 +1,9 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
+import Navbar from '../../components/Navbar';
 import {motion} from 'framer-motion';
-import Personagens from '../components/Personagens';
+import Personagens from './Personagens';
 
-import phrase from '../assets/phrase.svg';
+import phrase from '../../assets/phrase.svg';
 
 const Home = () => {
     return (

@@ -2,7 +2,7 @@ import { } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {motion} from 'framer-motion';
 
-import lostAnimation from '../assets/Background/lost.gif'
+import lostAnimation from '../../assets/Background/lost.gif'
 
 const NotFound = () => {
     const navigate = useNavigate();
