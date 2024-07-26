@@ -1,28 +1,5 @@
 import axios from "axios"
 
-async function fetchusersData(token) {
-  try {
-    const response = await axios.get('http://localhost:8080/api/v1/users/matchingUsers', { 
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    return response.data; // Retorna diretamente os dados dos usuários
-  } catch (error) {
-    throw error;
-  }
-}
-
-async function fetchUserImage(id) {
-  try {
-    const imageUrl = `http://localhost:8080/api/v1/image/filepath/${id}`;
-    const response = await axios.get(imageUrl);
-    return response.data; // Retorna diretamente os dados da imagem
-  } catch (error) {
-    throw error
-  }
-}
-
 export async function useMatchData(token) {
   if (token !== undefined) {
     try {
@@ -54,3 +31,27 @@ export async function useMatchData(token) {
     }
   }
 }
+
+async function fetchusersData(token) {
+  try {
+    const response = await axios.get('http://localhost:8080/api/v1/users/matchingUsers', { 
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    return response.data; // Retorna diretamente os dados dos usuários
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function fetchUserImage(id) {
+  try {
+    const imageUrl = `http://localhost:8080/api/v1/image/filepath/${id}`;
+    const response = await axios.get(imageUrl);
+    return response.data; // Retorna diretamente os dados da imagem
+  } catch (error) {
+    throw error
+  }
+}
+
