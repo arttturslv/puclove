@@ -2,7 +2,7 @@ import { } from "react-router-dom";
 import Slider from "./components/Slider";
 import Modal from "../../components/Modal";
 import ModalMatch from "../../components/ModalMatch";
-import { useMatchResponse } from "../../hooks/isMatch";
+import { useLikingUserMatch } from "../../hooks/isMatch";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../index.css";
@@ -64,7 +64,7 @@ const matches = () => {
     var response = '';
     function incrementar() {
             const useMatchRes = async () => {
-                response = await useMatchResponse(token, data[ID].id);
+                response = await useLikingUserMatch(token, data[ID].id);
 
                 if(ID+1 != data.length) {
                     setID(ID+1);

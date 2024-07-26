@@ -2,8 +2,6 @@ export default function ShowInteresses({interests, interestsList}) {
     return (
         <div className="flex flex-wrap w-[90%]">
             {interests.map(item => {
-                console.log("inter ", interestsList[3], "\ni ", item);
-
                 const hasEqualInterests = interestsList.some(interest => interest.name === item.name);
                 if (hasEqualInterests) {
                     return (
