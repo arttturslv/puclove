@@ -19,8 +19,12 @@ import Chat from "../Chat/Chat";
 import Configuration from "../Configuração/Configuration";
 import MatchesSkeleton from "./Skeleton";
 
+import audioInteraction from '../../assets/sounds/pickupCoin.wav'
+import audioSwipe from '../../assets/sounds/swipe.mp3'
 
 export default function MatchesNew() {
+    const match = new Audio(audioInteraction)
+    const swipe = new Audio(audioSwipe)
 
     /** Error handling */
     const [error, setError] = useState(null);
@@ -98,7 +102,7 @@ export default function MatchesNew() {
             scale: [50,2.5],
             transition: {duration: 0.3}
         })
-      
+
     }
 
     /**
@@ -106,6 +110,8 @@ export default function MatchesNew() {
     * @param {String} direction 
     */
     function animationSwipping(direction) {
+        swipe.play()
+
         switch (direction) {
             case "left":
                 swiping.stop();
@@ -179,6 +185,8 @@ console.log("comp index" ,compatibles.index)
         //Caso match - animacao match - tira essa pessoa do localstorage e adiciona nos "matches"
         //Caso like - animacao like
         setInteractionType("Like");
+        match.play()
+
         await animationUserInteraction(() => animationSwipping("right"));
 
         dispatch({type: "LIKE"})
@@ -186,6 +194,8 @@ console.log("comp index" ,compatibles.index)
 
     async function disliking() {
         setInteractionType("Dislike")
+        match.play()
+
         await animationUserInteraction(() => animationSwipping("left"));
 
         dispatch({type: "DISLIKE"})
@@ -193,6 +203,8 @@ console.log("comp index" ,compatibles.index)
 
     async function goingBack() {
         setInteractionType("Goback")
+        match.play()
+
         await animationItsMatch();
 
         dispatch({type: "GOBACK"})
