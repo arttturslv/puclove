@@ -51,10 +51,11 @@
 }
 
 /* Esconder scrollbar da match.jsx */
-#central::-webkit-scrollbar {
+.nobar::-webkit-scrollbar {
     display: none;
   }
-#central {
+.nobar {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+    overflow-y: scroll;
 }
