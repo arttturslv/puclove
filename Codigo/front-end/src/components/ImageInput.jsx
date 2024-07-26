@@ -19,7 +19,7 @@ const ImageInput = ({ initialImage, onImageChange, index }) => {
 
     return (
         <div style={{backgroundImage: `url(${image})`}} 
-             className="h-32 w-32 max-md:w-40 max-md:h-40 max-sm:w-32 max-sm:h-32 bg-cover bg-cinzaWhite rounded-xl relative">
+             className="h-32 w-32 max-md:w-40 max-md:h-40 max-sm:w-32 max-sm:h-32 bg-cover bg-[#434343] rounded-xl relative shadow-lg">
             <form className="w-full h-full flex">
                 <label htmlFor={`file-${index}`} className="w-full h-full hover:cursor-pointer"></label>
                 <input className="hidden" type="file" multiple="multiple" accept="image/jpg, image/jpeg, image/png*" id={`file-${index}`} name="file"  

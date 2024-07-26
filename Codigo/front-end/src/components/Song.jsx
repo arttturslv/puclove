@@ -12,7 +12,7 @@ export default function SongOptions ({musica}) {
         <div className="relative h-fit w-fit py-2 px-1.5 ">
             <img className="w-[4.2rem] relative rounded-md" src={imageURL} alt={"Capa da música - " + name} />
             <a href={songURL} target="blank" className="z-30 group-hover:opacity-100 opacity-0 absolute left-[30%] top-[32%] transition-all duration-200">
-                <img className="w-8" src={externalLink} alt="" srcset="" />
+                <img className="w-8" src={externalLink} alt=""/>
             </a>
         </div>
 
