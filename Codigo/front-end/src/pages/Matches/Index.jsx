@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useReducer } from "react"
 import { motion, AnimatePresence, useAnimationControls } from 'framer-motion';
 
 import { useMatchData } from "../../hooks/useMatchData";
@@ -34,7 +34,6 @@ export default function MatchesNew() {
     const [compatibleUsers, setCompatibleUsers] = useState(JSON.parse(null));
 
     /** States */
-    const [ID, setID] = useState(2);
     const [interactionType, setInteractionType] = useState(null);
     const [isSettingsShowing, setIsSettingsShowing] = useState(false)
     const [isChatShowing, setIsChatShowing] = useState(false)
@@ -148,35 +147,56 @@ export default function MatchesNew() {
                 break;
         }
     }
+    const [compatibles, dispatch] = useReducer(reducer, { index: 0 });
 
+    function reducer(state, action) {
+        let compatiblesLength = compatibleUsers.length;
+        let val = 0;
+        switch (action.type) {
+            case "LIKE":
+                val = (state.index + 1) % compatiblesLength;
+                console.log(val);
+                return { index: val };
+            case "DISLIKE":
+                val = (state.index + 1) % compatiblesLength;
+                console.log(val);
+                return { index: val };
+            case "GOBACK":
+                val = state.index - 1;
+                if(val<0) 
+                    return {index: 0}
+                return {index: val}
+            default:
+                return state;
+        }
+      }
+
+console.log("comp index" ,compatibles.index)
     /** Users interactions */
-    function liking() {
+    async function liking() {
         //Curte a pessoa usando o linkingUser  e verifica match
         //passa pra proxima pessoa (ciclico)
         //Caso match - animacao match - tira essa pessoa do localstorage e adiciona nos "matches"
         //Caso like - animacao like
-        setInteractionType("Like")
-        let prevID = ID;
-        prevID = (prevID + 1) % compatibleUsers.length;
-        setID((prev) => prev = prevID)
-        animationUserInteraction(() => animationSwipping("right"));
+        setInteractionType("Like");
+        await animationUserInteraction(() => animationSwipping("right"));
+
+        dispatch({type: "LIKE"})
     }
 
-    function disliking() {
+    async function disliking() {
         setInteractionType("Dislike")
-        let prevID = ID;
-        prevID = (prevID + 1) % compatibleUsers.length;
-        setID((prev) => prev = prevID)
-        animationUserInteraction(() => animationSwipping("left"));
+        await animationUserInteraction(() => animationSwipping("left"));
+
+        dispatch({type: "DISLIKE"})
     }
 
-    function goingBack() {
-        let prevID = ID;
-        prevID = (prevID - 1) % compatibleUsers.length;
-        prevID = prevID == -1 ? 0 : prevID;
-        setID((prev) => prev = prevID)
+    async function goingBack() {
+        setInteractionType("Goback")
+        await animationItsMatch();
+
+        dispatch({type: "GOBACK"})
         //animationSwipping("up")
-        animationItsMatch();
 
     }
 
@@ -211,7 +231,7 @@ export default function MatchesNew() {
                 return (
                     <WrapperDiv title={"Meus gostos:"}>
                         <div className="p-2">
-                            <ShowInteresses interests={compatibleUsers[ID]?.interests} interestsList={currentUserInterests}></ShowInteresses>
+                            <ShowInteresses interests={compatibleUsers[compatibles.index]?.interests} interestsList={currentUserInterests}></ShowInteresses>
                         </div>
                     </WrapperDiv>
                 )
@@ -219,7 +239,7 @@ export default function MatchesNew() {
                 return (
                     <WrapperDiv title={"Estou buscando:"}>
                         <div className="p-2">
-                            <h4 className=" text-lg text-amareloOcre font-bold">{decideEmoji(compatibleUsers[ID]?.intention)}</h4>
+                            <h4 className=" text-lg text-amareloOcre font-bold">{decideEmoji(compatibleUsers[compatibles.index]?.intention)}</h4>
                         </div>
                     </WrapperDiv >
                 )
@@ -263,10 +283,10 @@ export default function MatchesNew() {
                                 <main id="main" className="sm:w-[400px] w-full relative md:m-0 mb-8 transition-all duration-200">
                                     {/* Fotos e informações básicas */}
                                     <div className="h-[750px] relative flex justify-center ">
-                                        <Slider handsControl={handsControl} itsMatchTextControl={itsMatchTextControl} swiping={swiping} images={compatibleUsers[ID].image} userInteraction={userInteraction} interactionType={interactionType} />
+                                        <Slider handsControl={handsControl} itsMatchTextControl={itsMatchTextControl} swiping={swiping} images={compatibleUsers[compatibles.index]?.image} userInteraction={userInteraction} interactionType={interactionType} />
 
                                         <motion.div animate={swiping} className="absolute bottom-2 space-y-2 text-white w-[380px] px-3">
-                                            <UserBasicInfo compatibleUser={compatibleUsers[ID]} />
+                                            <UserBasicInfo compatibleUser={compatibleUsers[compatibles.index]} />
 
                                             {showRandonFacts()}
 
@@ -289,7 +309,7 @@ export default function MatchesNew() {
 
                                         <WrapperDiv title={"Meus gostos:"}>
                                             <div className="p-2">
-                                                <ShowInteresses interests={compatibleUsers[ID]?.interests} interestsList={currentUserInterests}></ShowInteresses>
+                                                <ShowInteresses interests={compatibleUsers[compatibles.index]?.interests} interestsList={currentUserInterests}></ShowInteresses>
                                             </div>
                                         </WrapperDiv>
 
@@ -297,14 +317,14 @@ export default function MatchesNew() {
                                             <div className="p-2 text-white flex gap-2  flex-col">
                                                 <div className="flex gap-2 items-center cursor-pointer hover:text-vermelhoSanguino ">
                                                     <img className="w-4 h-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="icone instagram" />
-                                                    <p className="text-sm "><strong>@artur.pine</strong>{compatibleUsers[ID]?.instagram}</p>
+                                                    <p className="text-sm "><strong>@artur.pine</strong>{compatibleUsers[compatibles.index]?.instagram}</p>
                                                 </div>
                                             </div>
                                         </WrapperDiv>
 
                                         <WrapperDiv title={"Estou buscando:"}>
                                             <div className="p-2">
-                                                <h4 className=" text-lg text-amareloOcre font-bold">{decideEmoji(compatibleUsers[ID]?.intention)}</h4>
+                                                <h4 className=" text-lg text-amareloOcre font-bold">{decideEmoji(compatibleUsers[compatibles.index]?.intention)}</h4>
                                             </div>
                                         </WrapperDiv >
                                     </div>
