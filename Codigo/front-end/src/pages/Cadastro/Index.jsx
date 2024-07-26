@@ -26,6 +26,7 @@ export default function Cadastro (){
   const [arrayInteresses, setArrayInteresses] = useState(null);
   const [placeholder, setPlaceholder] = useState(""); //usado para armazenar os valores selecionados no modal de interesse
   const [displayNotification , setDisplayNotification ] = useState(false); //usado para controlar a visibilidade da mensagem de cadastro concluido.
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
  
@@ -68,7 +69,7 @@ export default function Cadastro (){
       }, 3000);
     } catch (error) {
       console.error("Registration failed", error);
-      setDisplayNotification(true);
+      setError(error)
     }
 
   };
@@ -83,10 +84,13 @@ export default function Cadastro (){
     >
       <Navbar />
       
-      {
-        displayNotification==true?
-        <ErrorNotification displayNotification={setDisplayNotification} timer={25}/>:""
-      }
+      {   error!=null &&
+                <ErrorNotification 
+                    error={error} 
+                    setError={setError}
+                    timer={40} 
+                />
+            }
 
       <div className="flex-col flex gap-2 justify-center items-center w-[100vw] h-[93vh]">
 

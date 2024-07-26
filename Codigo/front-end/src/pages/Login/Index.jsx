@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useForm } from "react-hook-form";
 
 import Navbar from "../../components/Navbar";
@@ -10,15 +10,18 @@ import ErrorNotification from '../../components/ErrorNotification'
 
 import logo from "../../assets/favicon.svg";
 
-export default function Login () {
+export default function Login() {
+  const [error, setError] = useState(null);
+
 
   const navigate = useNavigate();
   const [requisitionError, setRequisitionError] = useState(false);
   const [userLogged, setUserLogged] = useState(!!localStorage.getItem('currentUser'));
-  const {register, handleSubmit, formState : {errors}} = useForm();
-  const [displayNotification , setDisplayNotification ] = useState(false); //usado para controlar a visibilidade da mensagem de cadastro concluido.
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [displayNotification, setDisplayNotification] = useState(false); //usado para controlar a visibilidade da mensagem de cadastro concluido.
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  if(userLogged) { //evitar de entrar na pagina de login, com usuario logado
+  if (userLogged) { //evitar de entrar na pagina de login, com usuario logado
     navigate("/");
   }
 
@@ -26,7 +29,7 @@ export default function Login () {
     setTimeout(() => {
       setRequisitionError(false)
     }, 1000)
-  },[requisitionError])
+  }, [requisitionError])
 
   async function handleLogin(data) {
     var login = data.email;
@@ -38,39 +41,42 @@ export default function Login () {
     }
 
     try {
-      const response = await API.login(loginInfo);      
+      const response = await API.login(loginInfo);
       var data = response.data;
 
       localStorage.setItem('currentUser', JSON.stringify(data));
       navigate("/");
     } catch (error) {
       console.log(error);
-      setDisplayNotification(true);
-
+      setError(error)
     }
   }
 
   return (
-    <motion.div 
-      initial = {{opacity:0 }}
-      transition={{duration:1}}
-      animate = {{opacity:1 }}
-      exit={{opacity:0}} 
+    <motion.div
+      initial={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       className=" bg-cover w-full h-full  bg-[url('../src\assets\Background\bg_lines.svg')]">
 
-      <Navbar/>
+      <Navbar />
 
       {
-        displayNotification==true?
-        <ErrorNotification displayNotification={setDisplayNotification} timer={25}/>:""
+        error != null &&
+        <ErrorNotification
+          error={error}
+          setError={setError}
+          timer={40}
+        />
       }
 
       <div className="w-[100%] h-[93vh] flex justify-center items-center p-[10px] ">
         <div className="w-[400px] h-[430px] bg-[#333333] rounded-xl shadow-4xl overflow-hidden py-[60px] px-[20px] flex flex-col justify-center items-center">
-          
+
           <form className="w-[90%] space-y-1" onSubmit={handleSubmit(handleLogin)}>
 
-            <span id='logo'><img className="w-[50px] m-auto" src={logo} alt="PucLove"/></span>
+            <span id='logo'><img className="w-[50px] m-auto" src={logo} alt="PucLove" /></span>
             <span className=" font-semibold text-[#fff] text-[20px] text-center mb-[10px]">Venha encontrar seu parceiro!</span>
 
             <div>
@@ -84,9 +90,9 @@ export default function Login () {
                 validationSchema={{
                   required: "Preencha o campo de email*",
                   validate: value => value.includes("@sga.pucminas.br") || "O email deve conter: @sga.pucminas.br"
-              }}
-              required
-            />
+                }}
+                required
+              />
             </div>
 
             <div>
@@ -99,13 +105,13 @@ export default function Login () {
                 errors={errors}
                 register={register}
                 validationSchema={{
-                required: "Preencha o campo de senha*",
-                minLength: {
-                  value: 7,
-                  message: "A senha está menor que o tamanho mínimo*"
-                }
-              }}
-              required
+                  required: "Preencha o campo de senha*",
+                  minLength: {
+                    value: 7,
+                    message: "A senha está menor que o tamanho mínimo*"
+                  }
+                }}
+                required
               />
             </div>
 
@@ -122,7 +128,7 @@ export default function Login () {
             <div className="text-center flex justify-center items-center mt-[5px]" onClick={() => navigate("/cadastro")}>
               <a className=" hover:text-[#e2c09b] text-[14px] font-light text-[#fff] decoration-0 cursor-pointer ">Criar uma conta</a>
             </div>
-            
+
           </form>
         </div>
       </div>
