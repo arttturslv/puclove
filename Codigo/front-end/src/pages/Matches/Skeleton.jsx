@@ -3,10 +3,6 @@ import React from "react";
 import { motion } from 'framer-motion';
 import { useNavigate } from "react-router-dom";
 export default function MatchesSkeleton() {
-    const navigate = useNavigate();
-    setTimeout(()=> {
-        navigate('/matches1')
-    },2000)
 
     return (
         <div>
@@ -17,9 +13,9 @@ export default function MatchesSkeleton() {
                 exit={{ opacity: 0 }}
                 id="pagMatch" className="w-full h-screen bg-amareloOcre overflow-hidden ">
 
-                <span className="w-full h-full flex flex-col ">
+                <span className="w-full h-full flex flex-col overflow-y-scroll overflow-x-hidden">
 
-                    <span className="mt-4 flex gap-6 w-auto justify-center  h-20"> 
+                    <span className="m-4 flex gap-6 w-auto justify-center h-20"> 
                         <figure className="block w-12 h-12 bg-vermelhoSanguino rounded-full animate-pulse"/>
                         <figure className="block w-12 h-12 bg-vermelhoSanguino/80 rounded-full "/>
                         <figure className="block w-12 h-12 bg-vermelhoSanguino rounded-full animate-pulse"/>
