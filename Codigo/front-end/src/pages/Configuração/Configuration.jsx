@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import ImageInput from "../../components/ImageInput";
-import SongOptions from "../../components/Song";
 import { useForm } from "react-hook-form";
 
 import voltarIcon from "../../assets/Icons/revert.svg";
@@ -13,7 +12,12 @@ import Input from "../../components/Input";
 import Interesses from '../../components/Interesses'
 import WrapperDiv from "../Matches/components/WrapperDiv";
 import RangeSlider from "./RangeSlider";
+import API from "../../api/axiosConfig";
+
+import SearchSong from "./SearchSong";
 export default function Configuration({ user, setIsSettingsShowing }) {
+
+
     const [signProgress, setSignProgress] = useState("first"); // usado para verificar o processo de cadastro (0 = primeira parte | 1, segunda parte | 2 cadastro completo)
     const [arrayInteresses, setArrayInteresses] = useState(null);
     const [placeholder, setPlaceholder] = useState(""); //usado para armazenar os valores selecionados no modal de interesse
@@ -36,16 +40,12 @@ export default function Configuration({ user, setIsSettingsShowing }) {
     const [interests, setInterests] = useState(user.interests);
     const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber);
     const [instagram, setInstagram] = useState(user.instagram);
-    const [description, setDescription] = useState(user.aboutUser?.description || 'a');
-    const [profileSong, setProfileSong] = useState(user.aboutUser?.profileSong || 'b');
+    const [description, setDescription] = useState(user.aboutUser?.description);
+    const [profileSong, setProfileSong] = useState(user.aboutUser?.profileSong);
     const [orientation, setOrientation] = useState(user.orientation);
     const [gender, setGender] = useState(user.gender);
     const [agePreference, setAgePreference] = useState(user.agePreference || [18, 100]);
     const [intention, setIntention] = useState(user.intention);
-
-    const [searchedSong, setSearchedSong] = useState(profileSong?.songTitle || 'padrao');
-    const [spotifyToken, setSpotifyToken] = useState();
-    const [searchedList, setSearchedList] = useState();
 
 
     const {
@@ -58,6 +58,27 @@ export default function Configuration({ user, setIsSettingsShowing }) {
 
     useEffect(() => {
         getInterests();
+
+        setProfileSong(
+            {
+                        name: "Nightmare",
+                        album: {
+                            name: "Nightmare",
+                            images: [
+                                { url: "URL da imagem 1" },
+                                { url: "URL da imagem 2" },
+                                { url: "https://i.discogs.com/pfxmSXEviiT35ebkHmFpAGDYnwaHroukXDKVGSTvHzs/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ0OTk4/OTgtMTQ5MzQxMzcy/Mi04ODg2LmpwZWc.jpeg" }
+                            ]
+                        },
+                        artists: [
+                            { name: "Avenged Sevenfold" }
+                        ],
+                        external_urls: {
+                            spotify: "https://www.youtube.com/watch?v=94bGzWyHbu0&ab_channel=AvengedSevenfold"
+                        }
+                    }
+                )
+
     }, []);
 
     async function getInterests() {
@@ -70,31 +91,6 @@ export default function Configuration({ user, setIsSettingsShowing }) {
             console.log(error);
         }
     }
-
-    const onSubmit = async (data) => {
-
-        if (signProgress == "first") {
-            setSignProgress("second");
-            console.log("preencher outra pagina")
-            return;
-        }
-
-        let arrayInterests = placeholder.split(", ");
-        data.interests = arrayInterests;
-
-        try {
-            const response = await API.register(data);
-            console.log("Registration successful", response.data);
-
-            setTimeout(() => {
-                navigate("/login");
-            }, 3000);
-        } catch (error) {
-            console.error("Registration failed", error);
-            setDisplayNotification(true);
-        }
-
-    };
 
     function formataData(data) {
         if (data == null) return;
@@ -114,7 +110,7 @@ export default function Configuration({ user, setIsSettingsShowing }) {
         <section id="config" className="nobar overflow-y-scroll h-screen overflow-x-hidden relative md:m-0 mb-8 p-4 bg-cinzaBlack text-amareloOcre">
             <span className="flex justify-between">
                 <h3 className=" text-lg font-semibold" >Configurações</h3>
-                <span onClick={() => setIsSettingsShowing((prev)=> !prev)} className="flex gap-2 cursor-pointer justify-center items-center">
+                <span onClick={() => setIsSettingsShowing((prev) => !prev)} className="flex gap-2 cursor-pointer justify-center items-center">
                     <img className="w-6" src={voltarIcon} alt="" />
                     <h3 className=" text-md " >Voltar</h3>
                 </span>
@@ -124,29 +120,29 @@ export default function Configuration({ user, setIsSettingsShowing }) {
                 <div className="pl-4 py-2 space-y-2">
                     <div>
                         <h6 className="text-sm font-semibold" >Nome</h6>
-                        <p className="font-extralight text-sm">{user.name}</p>
+                        <p className="font-extralight text-sm text-white/60">{user.name}</p>
                     </div>
                     <div>
                         <h6 className="text-sm font-semibold"  >E-mail</h6>
-                        <p className="font-extralight  text-sm">{user.email}</p>
+                        <p className="font-extralight text-sm text-white/60">{user.email}</p>
                     </div>
                     <div>
                         <h6 className="flex gap-4 text-sm font-semibold">Senha
                             <img className="img_exit w-6" src={voltarIcon} alt="voltar" />
                         </h6>
-                        <p className=" font-extralight text-sm">########</p>
+                        <p className=" font-extralight text-sm text-white/60">########</p>
                     </div>
                     <div>
                         <h6 className="text-sm font-semibold" >Data de Nascimento</h6>
-                        <p className="font-extralight text-sm">{formataData(user.birthDate)}</p>
+                        <p className="font-extralight text-sm text-white/60">{formataData(user.birthDate)}</p>
                     </div>
                     <div>
                         <h6 className="text-sm font-semibold" >Curso</h6>
-                        <p className="font-extralight text-sm">{user.course}</p>
+                        <p className="font-extralight text-sm text-white/60">{user.course}</p>
                     </div>
                     <div>
                         <h6 className="text-sm font-semibold" >Campus</h6>
-                        <p className="font-extralight text-sm">{user.campus}</p>
+                        <p className="font-extralight text-sm text-white/60">{user.campus}</p>
                     </div>
                     <div >
                         <div className="w-[100%] flex gap-4 flex-wrap  ">
@@ -167,13 +163,13 @@ export default function Configuration({ user, setIsSettingsShowing }) {
 
             <WrapperDiv title="Perfil">
 
-                <form className="w-[90%] m-auto py-2 flex flex-col gap-1 text-amareloOcre" onSubmit={handleSubmit(onSubmit)}>
+                <form className="w-[90%] m-auto py-2 flex flex-col gap-1 text-amareloOcre">
 
                     {/* OTIMIZAR COM O CUSTOM INPUT DEPOIS */}
                     <div>
                         <h4 className=" font-semibold text-amareloOcre my-[3px] text-[15px]">Qual seu campus?</h4>
                         <select
-                            className="text-[14px] text-amareloOcre w-[100%] h-[45px] py-[7px] px-[15px] rounded-lg bg-[#434343]"
+                            className="text-[14px] text-white/60 w-[100%] h-[45px] py-[7px] px-[15px] rounded-lg bg-[#434343]"
                             type="name"
                             placeholder="Qual seu campus?"
                             name="campus"
@@ -228,7 +224,7 @@ export default function Configuration({ user, setIsSettingsShowing }) {
                     <div>
                         <h4 className=" font-semibold text-amareloOcre my-[3px] text-[15px]">O que você busca?</h4>
                         <select
-                            className="text-[14px] text-amareloOcre w-[100%] h-[45px] py-[7px] px-[15px] rounded-lg bg-[#434343]"
+                            className="text-[14px] text-white/60 w-[100%] h-[45px] py-[7px] px-[15px] rounded-lg bg-[#434343]"
                             type="name"
                             name="intention"
                             {...register("intention", { required: true })}
@@ -244,9 +240,9 @@ export default function Configuration({ user, setIsSettingsShowing }) {
                     <div>
                         <h4 className=" font-semibold text-amareloOcre my-[3px] text-[15px]">Fale sobre você</h4>
                         <textarea
-                            className="text-[14px] text-amareloOcre placeholder:text-amareloOcre w-[100%] py-[7px] px-[15px] rounded-lg bg-[#434343]"
+                            className="text-[14px] -mb-2 w-[100%] py-[7px] px-[15px] rounded-lg bg-[#434343]"
                             type="name"
-                            placeholder="Quem é você?"
+                            placeholder="Escreva aqui quem é você, seus valores e diferenciais, lugares que você já foi e experiências passadas."
                             name="sobre"
                             {...register("sobre", { required: true })}
                         >
@@ -256,7 +252,7 @@ export default function Configuration({ user, setIsSettingsShowing }) {
                     <div>
                         <h4 className=" font-semibold text-amareloOcre my-[3px] text-[15px]">Orientação sexual</h4>
                         <select
-                            className="text-[14px] text-amareloOcre w-[100%] h-[45px] py-[7px] px-[15px] rounded-lg bg-[#434343]"
+                            className="text-[14px] text-white/60 w-[100%] h-[45px] py-[7px] px-[15px] rounded-lg bg-[#434343]"
                             type="name"
                             placeholder="Qual sua orientação sexual?"
                             name="orientacao"
@@ -273,7 +269,7 @@ export default function Configuration({ user, setIsSettingsShowing }) {
                     <div>
                         <h4 className=" font-semibold text-amareloOcre my-[3px] text-[15px]">Gênero</h4>
                         <select
-                            className="text-[14px] text-amareloOcre w-[100%] h-[45px] py-[7px] px-[15px] rounded-lg bg-[#434343]"
+                            className="text-[14px] text-white/60 w-[100%] h-[45px] py-[7px] px-[15px] rounded-lg bg-[#434343]"
                             type="name"
                             placeholder="Qual seu gênero?"
                             name="genero"
@@ -287,10 +283,15 @@ export default function Configuration({ user, setIsSettingsShowing }) {
                     </div>
 
                     <div className="space-y-1 max-sm:w-[100%] ">
-                        <h6>Preferência de idade</h6>
+                        <h4 className=" font-semibold text-amareloOcre my-[3px] text-[15px]">Preferência de idade</h4>
                         <RangeSlider idades={idades} setIdades={setIdades}></RangeSlider>
                         <div className="text-center text-xs"> {idades[0] + " anos até " + idades[1] + " anos"}</div>
                     </div>
+
+                    <SearchSong 
+                    setProfileSong={setProfileSong}
+                    profileSong={profileSong}
+                    />
 
 
                     <div className='grid grid-cols-3 md:grid-cols-2 py-2 gap-2 max-md:grid-cols-2 m-auto'>
@@ -306,6 +307,18 @@ export default function Configuration({ user, setIsSettingsShowing }) {
                     </div>
 
                 </form>
+            </WrapperDiv>
+
+            <WrapperDiv title="Segurança">
+                <div className="pl-4 py-2 w-full space-y-2">
+                    <div className="w-full">
+                        <div className="w-full flex justify-center items-center ">
+                            <button onClick={() => console.log("Abrir popup deletar conta")} className=" px-4 text-center py-2 border-[3px] border-vermelhoSanguino cursor-pointer bg-cinzaBlack  rounded-xl">
+                                Excluir a minha conta
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </WrapperDiv>
         </section>
     )

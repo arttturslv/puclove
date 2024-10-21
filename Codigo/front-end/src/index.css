@@ -59,3 +59,14 @@
     scrollbar-width: none;  /* Firefox */
     overflow-y: scroll;
 }
+
+.MuiSlider-rail {
+    background: #AD5E5E !important;
+}
+.MuiSlider-thumb{
+    background: #AD5E5E !important;
+}
+.MuiSlider-track{
+    background-color: #AD5E5E !important;
+    border-color: #AD5E5E !important;
+}

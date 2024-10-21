@@ -48,7 +48,7 @@ function Slider({ swiping, images, userInteraction, interactionType, handsContro
     return (
         <motion.div
             animate={swiping}
-            className='h-[750px] w-full m-auto py-1 group absolute'>
+            className='h-[750px] w-full m-auto group absolute '>
             <div style={{ backgroundImage: `url(${formataURL()})` }} className='w-full h-full justify-center flex md:rounded-2xl rounded-none  bg-center bg-cover'>
                 {/*dots index*/}
                 <div className='flex justify-center py-3 w-[90%]'>
@@ -74,7 +74,7 @@ function Slider({ swiping, images, userInteraction, interactionType, handsContro
                             ))}
                 </div>
             </div>
-            <div className='w-full h-[60%] flex justify-center absolute bottom-0 bg-gradient-to-t from-black'>
+            <div className='w-full h-[60%] flex justify-center absolute bottom-0 md:rounded-2xl rounded-none bg-gradient-to-t from-black'>
                 <motion.div
                     animate={userInteraction}
                     className="w-[50%] opacity-0 z-50 absolute">
