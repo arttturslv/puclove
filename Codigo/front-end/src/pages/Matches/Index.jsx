@@ -21,11 +21,15 @@ import MatchesSkeleton from "./Skeleton";
 
 import audioInteraction from '../../assets/sounds/pickupCoin.wav'
 import audioSwipe from '../../assets/sounds/swipe.mp3'
+import audioJump from '../../assets/sounds/jump.wav'
+import audioSynth from '../../assets/sounds/synth.wav'
 
 export default function MatchesNew() {
     const match = new Audio(audioInteraction)
     const swipe = new Audio(audioSwipe)
-
+    const synth = new Audio(audioSynth)
+    const jump = new Audio(audioJump)
+    
     /** Error handling */
     const [error, setError] = useState(null);
 
@@ -116,7 +120,8 @@ export default function MatchesNew() {
             case "left":
                 swiping.stop();
                 swiping.start(
-                    {
+                    {   
+                        borderRadius: 20,
                         rotate: [0, -15, 0],
                         x: [0, -800, 0],
                         y: [0, 300, 0],
@@ -185,8 +190,6 @@ console.log("comp index" ,compatibles.index)
         //Caso match - animacao match - tira essa pessoa do localstorage e adiciona nos "matches"
         //Caso like - animacao like
         setInteractionType("Like");
-        match.play()
-
         await animationUserInteraction(() => animationSwipping("right"));
 
         dispatch({type: "LIKE"})
@@ -194,8 +197,6 @@ console.log("comp index" ,compatibles.index)
 
     async function disliking() {
         setInteractionType("Dislike")
-        match.play()
-
         await animationUserInteraction(() => animationSwipping("left"));
 
         dispatch({type: "DISLIKE"})
@@ -203,11 +204,13 @@ console.log("comp index" ,compatibles.index)
 
     async function goingBack() {
         setInteractionType("Goback")
-        match.play()
-
+        jump.play();
+        
         await animationItsMatch();
 
         dispatch({type: "GOBACK"})
+        match.play()
+
         //animationSwipping("up")
 
     }
@@ -251,7 +254,7 @@ console.log("comp index" ,compatibles.index)
                 return (
                     <WrapperDiv title={"Estou buscando:"}>
                         <div className="p-2">
-                            <h4 className=" text-lg text-amareloOcre font-bold">{decideEmoji(compatibleUsers[compatibles.index]?.intention)}</h4>
+                            <h4 className=" text-lg text-white/60 font-bold">{decideEmoji(compatibleUsers[compatibles.index]?.intention)}</h4>
                         </div>
                     </WrapperDiv >
                 )
@@ -292,12 +295,12 @@ console.log("comp index" ,compatibles.index)
                             <div className="flex justify-center items-center flex-col transition-all duration-200">
                                 <Tab setIsSettingsShowing={setIsSettingsShowing} setIsChatShowing={setIsChatShowing} />
 
-                                <main id="main" className="sm:w-[400px] w-full relative md:m-0 mb-8 transition-all duration-200">
+                                <main id="main" className="sm:w-[400px] bg-black rounded-2xl w-full overflow-hidden relative md:m-0 mb-8 transition-all duration-200">
                                     {/* Fotos e informações básicas */}
                                     <div className="h-[750px] relative flex justify-center ">
                                         <Slider handsControl={handsControl} itsMatchTextControl={itsMatchTextControl} swiping={swiping} images={compatibleUsers[compatibles.index]?.image} userInteraction={userInteraction} interactionType={interactionType} />
 
-                                        <motion.div animate={swiping} className="absolute bottom-2 space-y-2 text-white w-[380px] px-3">
+                                        <motion.div animate={swiping} className="absolute bottom-2 space-y-2 text-white w-full px-5">
                                             <UserBasicInfo compatibleUser={compatibleUsers[compatibles.index]} />
 
                                             {showRandonFacts()}
@@ -307,14 +310,14 @@ console.log("comp index" ,compatibles.index)
                                     </div>
 
                                     {/* Informações detalhadas */}
-                                    <div className="bg-gradient-to-b from-black to-cinzaBlack px-4 space-y-4">
+                                    <div className="bg-gradient-to-b from-black to-cinzaBlack px-4 mt-6 space-y-4">
 
                                         <WrapperDiv title={"Minha música favorita:"}>
                                             <Song musica={musica}></Song>
                                         </WrapperDiv>
 
                                         <WrapperDiv title={"Sobre mim:"}>
-                                            <p className="p-2 text-sm text-amareloOcre">
+                                            <p className="p-2 text-sm text-white">
                                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                                             </p>
                                         </WrapperDiv>
@@ -336,7 +339,7 @@ console.log("comp index" ,compatibles.index)
 
                                         <WrapperDiv title={"Estou buscando:"}>
                                             <div className="p-2">
-                                                <h4 className=" text-lg text-amareloOcre font-bold">{decideEmoji(compatibleUsers[compatibles.index]?.intention)}</h4>
+                                                <h4 className=" text-lg text-white font-bold">{decideEmoji(compatibleUsers[compatibles.index]?.intention)}</h4>
                                             </div>
                                         </WrapperDiv >
                                     </div>

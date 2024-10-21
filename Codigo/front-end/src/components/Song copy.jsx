@@ -21,6 +21,7 @@ export default function SongOptions ({musica, salvar, actionText}) {
             <p className="font-semibold overflow-hidden truncate text-white">{name}</p>
             <p className="text-sm overflow-hidden truncate text-white/90">{author + " - " + album}</p>
             <p className="text-xs group-hover:visible invisible text-amareloOcre transition-all duration-100 ">{salvar!=null? actionText: 'Reproduzir no Spotify'}</p>
+
         </div>
     </div>
     )
